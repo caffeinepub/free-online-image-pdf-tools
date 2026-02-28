@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 7,
+  "projectStateVersion": 11,
   "summary": "Production-ready 'Free Online Image & PDF Tools' website with 20+ working tools, AdSense monetization, admin panel, full SEO optimization, legal pages, blog section, and Node.js/Express or Next.js backend. Footer credits: 'Created by Anurag Singh'.",
   "architectural_notes": [
     "Tech stack: Node.js + Express OR Next.js; production-ready, scalable to 100k+ daily visitors",
@@ -8,7 +8,8 @@
     "Admin panel at /admin — session-authenticated, never expose secrets",
     "Footer must always display 'Created by Anurag Singh' and SEO hashtags",
     "Ad placement must comply with AdSense policies; all ad zones clearly commented in HTML",
-    "Admin credentials: username='AnuragSingh', password='Anurag@123' (store hashed); provide password-change UI in admin settings"
+    "Admin credentials: username='AnuragSingh', password='Anurag@123' (store hashed); provide password-change UI in admin settings",
+    "AdSense publisher script (ca-pub-7616987582508879) must be injected in <head> on all non-admin pages"
   ],
   "known_issues": [],
   "isFixRequest": false,
@@ -108,6 +109,22 @@
         "REQ-12"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-add-the-google-adsense-script-tag-script-async-src-https-pagead2-googlesyndication-com-pagead-js-adsbygoogle-js-client-ca-pub-7616987582508879-crossorigin-anonymous-script-inside-the-head-element-of-frontend-index-html-since-the-app-is-a-react-spa-with-a-single-html-shell-this-will-apply-the-script-globally-to-exclude-it-from-admin-pages-detect-the-current-route-at-runtime-and-skip-adsense-initialisation-on-any-route-that-starts-with-admin",
+      "title": "Add the Google AdSense script tag `<script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7616987582508879\" crossorigin=\"anonymous\"></script>` inside the `<head>` element of `frontend/index.html`. Since the app is a React SPA with a single HTML shell, this will apply the script globally. To exclude it from admin pages, detect the current route at runtime and skip AdSense initialisation on any route that starts with `/admin`.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-static-verification-file-at-frontend-public-f8073e773aa7cba5922a-txt-so-it-is-served-at-the-website-root-url-path-f8073e773aa7cba5922a-txt-the-file-content-should-match-the-standard-google-adsense-site-verification-format-use-the-filename-token-f8073e773aa7cba5922a-as-the-file-content-e-g-google-site-verification-f8073e773aa7cba5922a",
+      "title": "Create a static verification file at `frontend/public/f8073e773aa7cba5922a.txt` so it is served at the website root URL path `/f8073e773aa7cba5922a.txt`. The file content should match the standard Google AdSense/site verification format — use the filename token `f8073e773aa7cba5922a` as the file content (e.g., `google-site-verification: f8073e773aa7cba5922a`).",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -162,6 +179,18 @@
     {
       "id": "AR-9",
       "summary": "Admin panel credentials: username='AnuragSingh', password='Anurag@123'; add ability to change admin username/password from within the admin dashboard settings",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Add real AdSense script tag (client=ca-pub-7616987582508879) to <head> of all pages except admin pages",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Upload verification file f8073e773aa7cba5922a.txt to the root of the website (for domain/AdSense verification)",
       "reqIds": [],
       "status": "pending"
     }

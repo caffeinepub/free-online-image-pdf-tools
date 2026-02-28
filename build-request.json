@@ -1,43 +1,36 @@
 {
   "kind": "build_request",
-  "title": "Add Change Password to Admin Settings",
+  "title": "Add AdSense/domain verification file to website root",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-12",
-      "text": "In the Settings section of the admin dashboard (`frontend/src/pages/admin/AdminDashboardPage.tsx`), add a dedicated 'Change Password' subsection with fields for: current password (for verification), new password, and confirm new password. On submit, verify the current password against the active credentials stored in AuthContext, then if valid and new passwords match, update the password in AuthContext state and sessionStorage so it persists for the session. Display a clear success message on save or a descriptive error message on failure (wrong current password, password mismatch, or empty fields). The form must be styled consistently with the existing dark gradient admin theme.",
+      "id": "REQ-14",
+      "text": "Create a static verification file at `frontend/public/f8073e773aa7cba5922a.txt` so it is served at the website root URL path `/f8073e773aa7cba5922a.txt`. The file content should match the standard Google AdSense/site verification format — use the filename token `f8073e773aa7cba5922a` as the file content (e.g., `google-site-verification: f8073e773aa7cba5922a`).",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-recent"
         ],
         "quotes": [
-          "add change password"
+          "Upload this file to the root of the website: freeaitool-iyr.caffeine.xyz/f8073e773aa7cba5922a.txt"
         ]
       },
       "acceptanceCriteria": [
-        "A 'Change Password' form is visible in the admin dashboard Settings section.",
-        "The form has three fields: Current Password, New Password, and Confirm New Password.",
-        "Submitting with the wrong current password shows an error message.",
-        "Submitting with mismatched new password and confirm new password shows an error message.",
-        "Submitting with all empty fields shows a validation error.",
-        "On a valid submission, the password is updated in AuthContext state and sessionStorage.",
-        "A success message is displayed after a successful password change.",
-        "The admin can log out and log back in using the new password.",
-        "The form and messages are styled consistently with the existing dark gradient admin theme."
+        "The file `frontend/public/f8073e773aa7cba5922a.txt` exists in the repository.",
+        "Navigating to `/f8073e773aa7cba5922a.txt` on the deployed site returns a 200 response with the verification token content.",
+        "The file is not blocked by `robots.txt` and is accessible without authentication.",
+        "No other pages or routes are modified by this change."
       ]
     }
   ],
   "constraints": [
-    "Do not modify any file under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui.",
-    "Credential updates must be applied to AuthContext state and sessionStorage only — no backend persistence required for this feature.",
-    "The change password feature must be contained within the existing Settings section of AdminDashboardPage.tsx."
+    "Do not modify any existing routes, components, or backend logic.",
+    "The file must be placed in `frontend/public/` so it is served as a static asset at the root path."
   ],
   "nonGoals": [
-    "Adding a change username form (already covered by existing Settings section).",
-    "Storing admin credentials in the Motoko backend.",
-    "Adding a password reset/forgot password flow.",
-    "Sending any email or notification on password change."
+    "Modifying the AdSense script tag or any ad placement logic.",
+    "Adding any new pages, components, or backend endpoints.",
+    "Changing robots.txt or sitemap.xml."
   ],
   "imageRequirements": {
     "required": [],

@@ -1,5 +1,5 @@
 {
-  "frontend/src/App.tsx": "Main app with TanStack Router, lazy-loaded routes for all 21 tool pages, legal pages, blog, and admin panel, wrapped in AuthProvider with Layout component.",
+  "frontend/src/App.tsx": "Main app with TanStack Router, all 21 tool/legal/blog/admin routes, and an `AdSenseGuard` component that disables the AdSense `push` method on any `/admin` route while restoring normal behaviour on all other pages.",
   "frontend/src/hooks/useWordToPdf.ts": "Hook that converts plain text to a valid PDF using raw PDF syntax built from scratch; fixes Uint8Array Blob type error by casting `.buffer as ArrayBuffer`.",
   "frontend/src/hooks/usePdfMerge.ts": "Hook for PDF merging that reads file bytes and passes through the first PDF as a placeholder; fixes Uint8Array Blob type error by casting `.buffer as ArrayBuffer`.",
   "frontend/src/hooks/useJpgToPdf.ts": "Hook that converts multiple images to a PDF by building raw PDF structure with embedded JPEG XObjects; fixes Uint8Array Blob type error by casting `.buffer as ArrayBuffer`.",
@@ -20,5 +20,7 @@
   "frontend/src/pages/BlogArticlePage.tsx": "Blog article page with dynamic slug routing, markdown-like content rendering, related tools sidebar, and Article JSON-LD schema.",
   "frontend/src/pages/admin/AdminLoginPage.tsx": "Admin login page with username/password form and session auth via AuthContext; removed the hardcoded credential hint from the UI.",
   "frontend/src/pages/admin/AdminDashboardPage.tsx": "Admin dashboard with Analytics and Settings tabs; the Settings tab now has two separate cards — `ChangeUsernameCard` for updating the admin username and `ChangePasswordCard` for a dedicated change-password form with Current Password, New Password, and Confirm New Password fields, full validation, and success/error feedback styled with the dark gradient admin theme.",
-  "frontend/src/contexts/AuthContext.tsx": "AuthContext with credentials (AnuragSingh/Anurag@123), sessionStorage persistence, `changeCredentials` for username+password updates, and a new dedicated `changePassword` method that only updates the password while keeping the username unchanged; exposes `currentUsername` and both change methods to consumers."
+  "frontend/src/contexts/AuthContext.tsx": "AuthContext with credentials (AnuragSingh/Anurag@123), sessionStorage persistence, `changeCredentials` for username+password updates, and a new dedicated `changePassword` method that only updates the password while keeping the username unchanged; exposes `currentUsername` and both change methods to consumers.",
+  "frontend/index.html": "HTML entry point with the Google AdSense script tag (`ca-pub-7616987582508879`) added inside `<head>` so it loads for the entire SPA.",
+  "frontend/public/f8073e773aa7cba5922a.txt": "Static Google site verification file served at the website root (`/f8073e773aa7cba5922a.txt`) for AdSense/domain ownership verification."
 }

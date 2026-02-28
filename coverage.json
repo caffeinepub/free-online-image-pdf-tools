@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-28T04:10:12.504Z",
+  "generatedAt": "2026-02-28T04:52:16.235Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -11,14 +11,14 @@
     "implemented": 1,
     "items": [
       {
-        "id": "REQ-12",
-        "summary": "In the Settings section of the admin dashboard (`frontend/src/pages/admin/AdminDashboardPage.tsx`), add a dedicated 'Change Password' subsection with fields for: current password (for verification), new password, and confirm new password. On submit, verify the current password against the active credentials stored in AuthContext, then if valid and new passwords match, update the password in AuthContext state and sessionStorage so it persists for the session. Display a clear success message on save or a descriptive error message on failure (wrong current password, password mismatch, or empty fields). The form must be styled consistently with the existing dark gradient admin theme.",
+        "id": "REQ-14",
+        "summary": "Create a static verification file at `frontend/public/f8073e773aa7cba5922a.txt` so it is served at the website root URL path `/f8073e773aa7cba5922a.txt`. The file content should match the standard Google AdSense/site verification format — use the filename token `f8073e773aa7cba5922a` as the file content (e.g., `google-site-verification: f8073e773aa7cba5922a`).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/admin/AdminDashboardPage.tsx"
+          "frontend/public/f8073e773aa7cba5922a.txt"
         ],
         "matchedFiles": [
-          "frontend/src/pages/admin/AdminDashboardPage.tsx"
+          "frontend/public/f8073e773aa7cba5922a.txt"
         ]
       }
     ]
@@ -28,8 +28,7 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/contexts/AuthContext.tsx",
-    "frontend/src/pages/admin/AdminDashboardPage.tsx",
+    "frontend/public/f8073e773aa7cba5922a.txt",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

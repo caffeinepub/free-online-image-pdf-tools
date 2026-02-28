@@ -1,5 +1,5 @@
-import React, { Suspense, lazy } from 'react';
-import { createRouter, createRoute, createRootRoute, RouterProvider, Outlet } from '@tanstack/react-router';
+import React, { Suspense, lazy, useEffect } from 'react';
+import { createRouter, createRoute, createRootRoute, RouterProvider, Outlet, useRouterState } from '@tanstack/react-router';
 import { AuthProvider } from './contexts/AuthContext';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
@@ -50,9 +50,40 @@ function PageLoader() {
   );
 }
 
+// Disables AdSense on admin routes by overriding the adsbygoogle push method
+function AdSenseGuard() {
+  const routerState = useRouterState();
+  const pathname = routerState.location.pathname;
+
+  useEffect(() => {
+    const isAdminRoute = pathname.startsWith('/admin');
+    const win = window as unknown as Record<string, unknown>;
+
+    if (isAdminRoute) {
+      // Freeze the adsbygoogle array so no new ads are pushed on admin pages
+      if (!Array.isArray(win['adsbygoogle'])) {
+        win['adsbygoogle'] = [];
+      }
+      const arr = win['adsbygoogle'] as { push?: unknown; _disabled?: boolean };
+      arr._disabled = true;
+      arr.push = () => { /* noop on admin pages */ };
+    } else {
+      // Restore normal push behaviour on non-admin pages
+      const arr = win['adsbygoogle'] as { push?: unknown; _disabled?: boolean } | undefined;
+      if (arr && arr._disabled) {
+        delete arr.push;
+        delete arr._disabled;
+      }
+    }
+  }, [pathname]);
+
+  return null;
+}
+
 function Layout() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <AdSenseGuard />
       <Header />
       <main className="flex-1">
         <Suspense fallback={<PageLoader />}>

@@ -1,27 +1,22 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add Change Password to Admin Settings",
+  "title": "Add AdSense/domain verification file to website root",
   "requirements": [
     {
-      "id": "REQ-12",
-      "summary": "Add a 'Change Password' form to the admin dashboard Settings section that validates the current password, accepts new password input, updates AuthContext state and sessionStorage on successful submission, and displays appropriate success or error messages styled with the dark gradient admin theme",
+      "id": "REQ-14",
+      "summary": "Create a static Google site verification file at the website root for AdSense verification",
       "acceptanceCriteria": [
-        "A 'Change Password' form is visible in the admin dashboard Settings section.",
-        "The form has three fields: Current Password, New Password, and Confirm New Password.",
-        "Submitting with the wrong current password shows an error message.",
-        "Submitting with mismatched new password and confirm new password shows an error message.",
-        "Submitting with all empty fields shows a validation error.",
-        "On a valid submission, the password is updated in AuthContext state and sessionStorage.",
-        "A success message is displayed after a successful password change.",
-        "The admin can log out and log back in using the new password.",
-        "The form and messages are styled consistently with the existing dark gradient admin theme."
+        "The file `frontend/public/f8073e773aa7cba5922a.txt` exists in the repository.",
+        "Navigating to `/f8073e773aa7cba5922a.txt` on the deployed site returns a 200 response with the verification token content.",
+        "The file is not blocked by `robots.txt` and is accessible without authentication.",
+        "No other pages or routes are modified by this change."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/admin/AdminDashboardPage.tsx",
-          "operation": "modify",
-          "description": "Add a 'Change Password' subsection within the existing Settings tab. The subsection will include three controlled input fields (Current Password, New Password, Confirm New Password) with type='password', all styled consistently with the dark gradient admin theme. Implement form validation to check that all fields are filled, that the current password matches the stored credentials from AuthContext, and that the new password and confirm password fields match. On submit, if validation passes, call the changePassword method from AuthContext to update both the in-memory state and sessionStorage. Display a success message on successful update or a descriptive error message on validation failure (e.g., 'Current password is incorrect', 'New passwords do not match', 'All fields are required'). Ensure the form uses the same card styling, input styling, and button styling as the existing 'Change Username' form in the Settings section."
+          "path": "frontend/public/f8073e773aa7cba5922a.txt",
+          "operation": "create",
+          "description": "Create a plain text verification file containing 'google-site-verification: f8073e773aa7cba5922a' that will be served as a static asset at the root path `/f8073e773aa7cba5922a.txt` for Google AdSense domain verification. This file must be placed in the `frontend/public/` directory to ensure it is automatically served at the root URL without requiring any routing changes."
         }
       ]
     }
