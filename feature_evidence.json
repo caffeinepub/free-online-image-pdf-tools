@@ -2,15 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-implement-a-modern-dark-gradient-professional-ui-with-a-hero-section-clean-typography-tool-category-tabs-image-tools-pdf-tools-smooth-css-transitions-lazy-loading-for-tool-cards-and-a-layout-optimized-for-core-web-vitals-do-not-include-any-owner-name-in-the-header-or-title-the-footer-must-display-created-by-anurag-singh-and-seo-hashtags-freeonlinetools-imagecompressor-pdfconverter-onlinetools-adsensewebsite-seotools-webtools-digitaltools",
-      "featureTitle": "Implement a modern dark + gradient professional UI with a hero section, clean typography, tool category tabs (Image Tools / PDF Tools), smooth CSS transitions, lazy loading for tool cards, and a layout optimized for Core Web Vitals. Do NOT include any owner name in the header or title. The footer must display 'Created by Anurag Singh' and SEO hashtags: #FreeOnlineTools #ImageCompressor #PDFConverter #OnlineTools #AdSenseWebsite #SEOTools #WebTools #DigitalTools.",
+      "featureId": "feature-update-the-hardcoded-admin-credentials-in-frontend-src-contexts-authcontext-tsx-so-that-the-default-username-is-anuragsingh-and-the-default-password-is-anurag-123-these-must-be-the-credentials-accepted-on-the-admin-login-page",
+      "featureTitle": "Update the hardcoded admin credentials in `frontend/src/contexts/AuthContext.tsx` so that the default username is `AnuragSingh` and the default password is `Anurag@123`. These must be the credentials accepted on the `/admin/login` page.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/layout/Footer.tsx",
-        "frontend/src/components/layout/Header.tsx",
-        "frontend/src/index.css",
-        "frontend/src/pages/HomePage.tsx",
-        "frontend/tailwind.config.js"
+        "frontend/src/contexts/AuthContext.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -20,122 +15,16 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-1"
+        "REQ-10"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-build-10-fully-functional-client-side-image-tools-each-on-a-dedicated-page-image-compressor-image-resizer-jpg-to-png-png-to-jpg-image-cropper-image-rotator-image-to-webp-webp-to-jpg-background-remover-basic-remove-solid-near-solid-background-color-and-image-metadata-viewer-each-tool-page-must-have-an-seo-title-meta-description-open-graph-tags-twitter-card-tags-json-ld-structured-data-tool-schema-breadcrumb-navigation-faq-section-and-related-tools-suggestions",
-      "featureTitle": "Build 10 fully functional client-side Image Tools, each on a dedicated page: Image Compressor, Image Resizer, JPG to PNG, PNG to JPG, Image Cropper, Image Rotator, Image to WebP, WebP to JPG, Background Remover (basic — remove solid/near-solid background color), and Image Metadata Viewer. Each tool page must have an SEO title, meta description, Open Graph tags, Twitter Card tags, JSON-LD structured data (Tool schema), breadcrumb navigation, FAQ section, and related tools suggestions.",
+      "featureId": "feature-add-a-settings-section-to-the-admin-dashboard-frontend-src-pages-admin-admindashboardpage-tsx-that-allows-the-logged-in-admin-to-change-their-username-and-password-the-settings-form-must-have-fields-for-new-username-current-password-for-verification-new-password-and-confirm-new-password-on-successful-save-the-new-credentials-must-replace-the-current-ones-in-authcontext-state-and-sessionstorage-so-they-persist-for-the-session-display-a-success-or-error-message-after-the-attempt",
+      "featureTitle": "Add a Settings section to the admin dashboard (`frontend/src/pages/admin/AdminDashboardPage.tsx`) that allows the logged-in admin to change their username and password. The settings form must have fields for: new username, current password (for verification), new password, and confirm new password. On successful save, the new credentials must replace the current ones in AuthContext state (and sessionStorage so they persist for the session). Display a success or error message after the attempt.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/tools/ImageToolTemplate.tsx",
-        "frontend/src/hooks/useBackgroundRemoval.ts",
-        "frontend/src/hooks/useImageCompression.ts",
-        "frontend/src/hooks/useImageConversion.ts",
-        "frontend/src/hooks/useImageCrop.ts",
-        "frontend/src/hooks/useImageMetadata.ts",
-        "frontend/src/hooks/useImageResize.ts",
-        "frontend/src/hooks/useImageRotation.ts",
-        "frontend/src/pages/tools/BackgroundRemoverPage.tsx",
-        "frontend/src/pages/tools/ImageCompressorPage.tsx",
-        "frontend/src/pages/tools/ImageCropperPage.tsx",
-        "frontend/src/pages/tools/ImageMetadataViewerPage.tsx",
-        "frontend/src/pages/tools/ImageResizerPage.tsx",
-        "frontend/src/pages/tools/ImageRotatorPage.tsx",
-        "frontend/src/pages/tools/ImageToWebpPage.tsx",
-        "frontend/src/pages/tools/JpgToPngPage.tsx",
-        "frontend/src/pages/tools/PngToJpgPage.tsx",
-        "frontend/src/pages/tools/WebpToJpgPage.tsx",
-        "frontend/src/utils/toolsData.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-build-11-fully-functional-pdf-tools-each-on-a-dedicated-page-pdf-to-word-extract-text-word-to-pdf-html-text-to-pdf-pdf-merge-pdf-split-pdf-compressor-pdf-lock-password-protect-pdf-unlock-remove-password-add-watermark-to-pdf-pdf-page-number-adder-pdf-to-jpg-and-jpg-to-pdf-each-tool-page-must-have-an-seo-title-meta-description-open-graph-tags-twitter-card-tags-json-ld-structured-data-tool-schema-breadcrumb-navigation-faq-section-and-related-tools-suggestions-use-client-side-pdf-libraries-e-g-pdf-lib-pdfjs-dist-where-possible-use-the-motoko-backend-for-any-server-side-processing-needed",
-      "featureTitle": "Build 11 fully functional PDF Tools, each on a dedicated page: PDF to Word (extract text), Word to PDF (HTML/text to PDF), PDF Merge, PDF Split, PDF Compressor, PDF Lock (password protect), PDF Unlock (remove password), Add Watermark to PDF, PDF Page Number Adder, PDF to JPG, and JPG to PDF. Each tool page must have an SEO title, meta description, Open Graph tags, Twitter Card tags, JSON-LD structured data (Tool schema), breadcrumb navigation, FAQ section, and related tools suggestions. Use client-side PDF libraries (e.g., pdf-lib, pdfjs-dist) where possible; use the Motoko backend for any server-side processing needed.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/tools/PdfToolTemplate.tsx",
-        "frontend/src/hooks/useJpgToPdf.ts",
-        "frontend/src/hooks/usePdfCompression.ts",
-        "frontend/src/hooks/usePdfLock.ts",
-        "frontend/src/hooks/usePdfMerge.ts",
-        "frontend/src/hooks/usePdfPageNumbers.ts",
-        "frontend/src/hooks/usePdfSplit.ts",
-        "frontend/src/hooks/usePdfToJpg.ts",
-        "frontend/src/hooks/usePdfToWord.ts",
-        "frontend/src/hooks/usePdfUnlock.ts",
-        "frontend/src/hooks/usePdfWatermark.ts",
-        "frontend/src/hooks/useWordToPdf.ts",
-        "frontend/src/pages/tools/JpgToPdfPage.tsx",
-        "frontend/src/pages/tools/PdfCompressorPage.tsx",
-        "frontend/src/pages/tools/PdfLockPage.tsx",
-        "frontend/src/pages/tools/PdfMergePage.tsx",
-        "frontend/src/pages/tools/PdfPageNumbersPage.tsx",
-        "frontend/src/pages/tools/PdfSplitPage.tsx",
-        "frontend/src/pages/tools/PdfToJpgPage.tsx",
-        "frontend/src/pages/tools/PdfToWordPage.tsx",
-        "frontend/src/pages/tools/PdfUnlockPage.tsx",
-        "frontend/src/pages/tools/PdfWatermarkPage.tsx",
-        "frontend/src/pages/tools/WordToPdfPage.tsx",
-        "frontend/src/utils/toolsData.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-adsense-compatible-ad-placement-layout-throughout-the-site-1-header-banner-ad-space-728-90-leaderboard-slot-2-in-content-banner-ads-between-tool-sections-3-sidebar-ad-column-on-tool-pages-300-250-rectangle-4-sticky-bottom-ad-bar-5-delayed-popup-ad-appears-after-5-seconds-dismissible-6-between-tools-ad-blocks-on-the-homepage-tool-grid-mark-every-ad-slot-with-an-html-comment-google-adsense-banner-here-and-ensure-the-layout-is-auto-ads-compatible-and-does-not-violate-adsense-content-policies",
-      "featureTitle": "Implement AdSense-compatible ad placement layout throughout the site: (1) Header banner ad space (728×90 leaderboard slot), (2) In-content banner ads between tool sections, (3) Sidebar ad column on tool pages (300×250 rectangle), (4) Sticky bottom ad bar, (5) Delayed popup ad (appears after 5 seconds, dismissible), (6) Between-tools ad blocks on the homepage tool grid. Mark every ad slot with an HTML comment <!-- Google AdSense Banner Here --> and ensure the layout is auto-ads compatible and does not violate AdSense content policies.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/ads/AdBanner.tsx",
-        "frontend/src/components/ads/PopupAd.tsx",
-        "frontend/src/components/ads/StickyBottomAd.tsx",
-        "frontend/src/components/layout/Header.tsx",
-        "frontend/src/components/tools/ImageToolTemplate.tsx",
-        "frontend/src/components/tools/PdfToolTemplate.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-build-a-secure-admin-panel-accessible-at-the-admin-route-it-must-include-a-login-page-with-username-and-password-fields-and-session-based-authentication-after-login-a-dashboard-must-display-total-visitors-all-time-daily-visitors-per-tool-usage-counts-most-used-tools-ranked-list-total-page-views-basic-ad-click-simulation-tracking-and-a-simple-bar-line-chart-for-analytics-admin-access-must-be-gated-unauthenticated-users-are-redirected-to-admin-login-store-analytics-data-visitor-counts-tool-usage-in-the-motoko-backend",
-      "featureTitle": "Build a secure admin panel accessible at the /admin route. It must include: a login page with username and password fields and session-based authentication. After login, a dashboard must display: total visitors (all-time), daily visitors, per-tool usage counts, most-used tools ranked list, total page views, basic ad click simulation tracking, and a simple bar/line chart for analytics. Admin access must be gated — unauthenticated users are redirected to /admin/login. Store analytics data (visitor counts, tool usage) in the Motoko backend.",
-      "files": [
-        "frontend/src/App.tsx",
         "frontend/src/contexts/AuthContext.tsx",
-        "frontend/src/hooks/usePageTracking.ts",
-        "frontend/src/pages/admin/AdminDashboardPage.tsx",
-        "frontend/src/pages/admin/AdminLoginPage.tsx"
+        "frontend/src/pages/admin/AdminDashboardPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -145,105 +34,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-5"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-comprehensive-seo-across-the-entire-site-proper-h1-h2-heading-hierarchy-on-every-page-unique-meta-title-and-meta-description-per-page-open-graph-tags-twitter-card-tags-a-sitemap-xml-a-robots-txt-faq-schema-markup-json-ld-on-tool-pages-breadcrumb-schema-internal-linking-between-related-tools-and-us-traffic-focused-keyword-targeting-on-key-pages-including-free-online-tools-image-compressor-online-pdf-converter-free-resize-image-online-free-merge-pdf-online",
-      "featureTitle": "Implement comprehensive SEO across the entire site: proper H1/H2 heading hierarchy on every page, unique meta title and meta description per page, Open Graph tags, Twitter Card tags, a sitemap.xml, a robots.txt, FAQ schema markup (JSON-LD) on tool pages, breadcrumb schema, internal linking between related tools, and US-traffic-focused keyword targeting on key pages including: 'free online tools', 'image compressor online', 'pdf converter free', 'resize image online free', 'merge pdf online'.",
-      "files": [
-        "frontend/src/components/seo/Breadcrumb.tsx",
-        "frontend/src/components/seo/FAQSection.tsx",
-        "frontend/src/components/seo/SEOHead.tsx",
-        "frontend/src/components/tools/ImageToolTemplate.tsx",
-        "frontend/src/components/tools/PdfToolTemplate.tsx",
-        "frontend/src/components/tools/RelatedTools.tsx",
-        "frontend/src/pages/HomePage.tsx",
-        "frontend/src/utils/seoData.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-6"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-create-five-adsense-compliant-legal-pages-about-us-contact-with-a-working-contact-form-that-submits-to-the-backend-and-stores-messages-privacy-policy-disclaimer-and-terms-conditions-each-page-must-be-professionally-written-include-proper-meta-tags-and-be-linked-in-the-footer-navigation",
-      "featureTitle": "Create five AdSense-compliant legal pages: About Us, Contact (with a working contact form that submits to the backend and stores messages), Privacy Policy, Disclaimer, and Terms & Conditions. Each page must be professionally written, include proper meta tags, and be linked in the footer navigation.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/layout/Footer.tsx",
-        "frontend/src/hooks/useContactForm.ts",
-        "frontend/src/pages/AboutPage.tsx",
-        "frontend/src/pages/ContactPage.tsx",
-        "frontend/src/pages/DisclaimerPage.tsx",
-        "frontend/src/pages/PrivacyPolicyPage.tsx",
-        "frontend/src/pages/TermsPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-7"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-build-a-blog-section-with-a-blog-index-page-listing-articles-by-category-individual-seo-optimized-article-pages-with-a-consistent-template-title-meta-og-json-ld-article-schema-author-date-related-tools-sidebar-and-at-least-3-seed-blog-posts-targeting-us-keywords-relevant-to-image-and-pdf-tools-include-an-internal-linking-structure-that-connects-blog-posts-to-relevant-tool-pages",
-      "featureTitle": "Build a blog section with: a blog index page listing articles by category, individual SEO-optimized article pages with a consistent template (title, meta, OG, JSON-LD Article schema, author, date, related tools sidebar), and at least 3 seed blog posts targeting US keywords relevant to image and PDF tools. Include an internal linking structure that connects blog posts to relevant tool pages.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/pages/BlogArticlePage.tsx",
-        "frontend/src/pages/BlogIndexPage.tsx",
-        "frontend/src/utils/seedBlogPosts.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-8"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-apply-a-cohesive-dark-gradient-visual-theme-deep-dark-navy-charcoal-base-0d0d1a-to-1a1a2e-range-vibrant-cyan-to-violet-gradient-accents-for-buttons-and-highlights-clean-sans-serif-typography-system-or-google-fonts-card-based-tool-grid-layout-with-subtle-glow-hover-effects-and-a-gradient-hero-section-with-headline-subheadline-and-a-search-browse-cta-enforce-this-theme-consistently-across-all-pages-including-tool-pages-admin-panel-legal-pages-and-blog",
-      "featureTitle": "Apply a cohesive dark gradient visual theme: deep dark navy/charcoal base (#0d0d1a to #1a1a2e range), vibrant cyan-to-violet gradient accents for buttons and highlights, clean sans-serif typography (system or Google Fonts), card-based tool grid layout with subtle glow hover effects, and a gradient hero section with headline, subheadline, and a search/browse CTA. Enforce this theme consistently across all pages including tool pages, admin panel, legal pages, and blog.",
-      "files": [
-        "frontend/src/index.css",
-        "frontend/src/pages/AboutPage.tsx",
-        "frontend/src/pages/BlogArticlePage.tsx",
-        "frontend/src/pages/BlogIndexPage.tsx",
-        "frontend/src/pages/ContactPage.tsx",
-        "frontend/src/pages/DisclaimerPage.tsx",
-        "frontend/src/pages/PrivacyPolicyPage.tsx",
-        "frontend/src/pages/TermsPage.tsx",
-        "frontend/src/pages/admin/AdminDashboardPage.tsx",
-        "frontend/src/pages/admin/AdminLoginPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-9"
+        "REQ-11"
       ],
       "confidence": "high"
     }

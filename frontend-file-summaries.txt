@@ -18,6 +18,7 @@
   "frontend/src/pages/TermsPage.tsx": "Terms & Conditions page covering acceptable use, intellectual property, advertising, warranties, and liability limitations.",
   "frontend/src/pages/BlogIndexPage.tsx": "Blog index page with category filter tabs and article cards grid; fixes the TanStack Router type error by using `to=\"/blog/$slug\"` with `params={{ slug: post.slug }}` instead of a template literal.",
   "frontend/src/pages/BlogArticlePage.tsx": "Blog article page with dynamic slug routing, markdown-like content rendering, related tools sidebar, and Article JSON-LD schema.",
-  "frontend/src/pages/admin/AdminLoginPage.tsx": "Admin login page with username/password form, session auth via AuthContext, and redirect to dashboard on success.",
-  "frontend/src/pages/admin/AdminDashboardPage.tsx": "Admin dashboard with stats cards, 7-day visitor bar chart via Recharts, top tools ranking, and full tool usage table from backend analytics."
+  "frontend/src/pages/admin/AdminLoginPage.tsx": "Admin login page with username/password form and session auth via AuthContext; removed the hardcoded credential hint from the UI.",
+  "frontend/src/pages/admin/AdminDashboardPage.tsx": "Admin dashboard with Analytics and Settings tabs; the Analytics tab shows stats, charts, and tool usage tables, while the Settings tab provides a form to change admin username and password with full validation and success/error feedback.",
+  "frontend/src/contexts/AuthContext.tsx": "AuthContext with updated default credentials (AnuragSingh/Anurag@123), sessionStorage-persisted credential storage, and a `changeCredentials` function that validates the current password before updating username/password; exposes `currentUsername` to consumers."
 }

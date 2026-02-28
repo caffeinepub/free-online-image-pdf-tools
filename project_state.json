@@ -1,17 +1,17 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 3,
+  "projectStateVersion": 5,
   "summary": "Production-ready 'Free Online Image & PDF Tools' website with 20+ working tools, AdSense monetization, admin panel, full SEO optimization, legal pages, blog section, and Node.js/Express or Next.js backend. Footer credits: 'Created by Anurag Singh'.",
   "architectural_notes": [
     "Tech stack: Node.js + Express OR Next.js; production-ready, scalable to 100k+ daily visitors",
     "Each tool has a dedicated page with SEO title, description, meta tags, and structured data schema",
     "Admin panel at /admin — session-authenticated, never expose secrets",
     "Footer must always display 'Created by Anurag Singh' and SEO hashtags",
-    "Ad placement must comply with AdSense policies; all ad zones clearly commented in HTML"
+    "Ad placement must comply with AdSense policies; all ad zones clearly commented in HTML",
+    "Admin credentials: username='AnuragSingh', password='Anurag@123' (store hashed); provide password-change UI in admin settings"
   ],
   "known_issues": [],
   "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Dark gradient hero background with abstract geometric grid lines and subtle cyan/violet glow nodes — wide format banner (hero-bg.dim_1920x600.png)\n- Site logo mark — minimalist icon combining an image frame and PDF page symbol with cyan-violet gradient fill (logo-icon.dim_128x128.png)\n- Open Graph default social share image with site name 'ToolsHub Free' on dark gradient background (og-default.dim_1200x630.png)",
   "existing_features": [
     {
       "id": "feature-implement-a-modern-dark-gradient-professional-ui-with-a-hero-section-clean-typography-tool-category-tabs-image-tools-pdf-tools-smooth-css-transitions-lazy-loading-for-tool-cards-and-a-layout-optimized-for-core-web-vitals-do-not-include-any-owner-name-in-the-header-or-title-the-footer-must-display-created-by-anurag-singh-and-seo-hashtags-freeonlinetools-imagecompressor-pdfconverter-onlinetools-adsensewebsite-seotools-webtools-digitaltools",
@@ -84,6 +84,22 @@
         "REQ-9"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-the-hardcoded-admin-credentials-in-frontend-src-contexts-authcontext-tsx-so-that-the-default-username-is-anuragsingh-and-the-default-password-is-anurag-123-these-must-be-the-credentials-accepted-on-the-admin-login-page",
+      "title": "Update the hardcoded admin credentials in `frontend/src/contexts/AuthContext.tsx` so that the default username is `AnuragSingh` and the default password is `Anurag@123`. These must be the credentials accepted on the `/admin/login` page.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-settings-section-to-the-admin-dashboard-frontend-src-pages-admin-admindashboardpage-tsx-that-allows-the-logged-in-admin-to-change-their-username-and-password-the-settings-form-must-have-fields-for-new-username-current-password-for-verification-new-password-and-confirm-new-password-on-successful-save-the-new-credentials-must-replace-the-current-ones-in-authcontext-state-and-sessionstorage-so-they-persist-for-the-session-display-a-success-or-error-message-after-the-attempt",
+      "title": "Add a Settings section to the admin dashboard (`frontend/src/pages/admin/AdminDashboardPage.tsx`) that allows the logged-in admin to change their username and password. The settings form must have fields for: new username, current password (for verification), new password, and confirm new password. On successful save, the new credentials must replace the current ones in AuthContext state (and sessionStorage so they persist for the session). Display a success or error message after the attempt.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -132,6 +148,12 @@
     {
       "id": "AR-8",
       "summary": "Node.js + Express or Next.js backend with clean folder structure, env variables, rate limiting, input validation, secure sessions, Helmet middleware",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Admin panel credentials: username='AnuragSingh', password='Anurag@123'; add ability to change admin username/password from within the admin dashboard settings",
       "reqIds": [],
       "status": "pending"
     }

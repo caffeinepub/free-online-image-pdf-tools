@@ -1,310 +1,61 @@
 {
   "kind": "build_request",
-  "title": "Free Online Image & PDF Tools Website",
-  "projectName": "ToolsHub Free",
+  "title": "Set admin credentials to AnuragSingh/Anurag@123 and add password change settings in admin dashboard",
+  "projectName": "Free Online Tools",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-1",
-      "text": "Implement a modern dark + gradient professional UI with a hero section, clean typography, tool category tabs (Image Tools / PDF Tools), smooth CSS transitions, lazy loading for tool cards, and a layout optimized for Core Web Vitals. Do NOT include any owner name in the header or title. The footer must display 'Created by Anurag Singh' and SEO hashtags: #FreeOnlineTools #ImageCompressor #PDFConverter #OnlineTools #AdSenseWebsite #SEOTools #WebTools #DigitalTools.",
+      "id": "REQ-10",
+      "text": "Update the hardcoded admin credentials in `frontend/src/contexts/AuthContext.tsx` so that the default username is `AnuragSingh` and the default password is `Anurag@123`. These must be the credentials accepted on the `/admin/login` page.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-2"
+          "msg-latest"
         ],
         "quotes": [
-          "Modern dark + gradient professional UI",
-          "Hero section",
-          "Tool categories with tabs",
-          "Smooth transitions",
-          "Created by Anurag Singh"
+          "make AnuragSingh as an username and Anurag@123 as a password"
         ]
       },
       "acceptanceCriteria": [
-        "Homepage has a prominent hero section with headline and call-to-action",
-        "Tab navigation switches between Image Tools and PDF Tools categories",
-        "Dark background with gradient accents applied consistently",
-        "Footer displays 'Created by Anurag Singh' and all listed SEO hashtags",
-        "No owner name appears in the header or page title",
-        "Layout is fully mobile responsive"
+        "Logging in at /admin/login with username 'AnuragSingh' and password 'Anurag@123' succeeds and redirects to /admin dashboard.",
+        "Logging in with any other username/password combination fails with an error message.",
+        "The AuthContext default credentials are set to username='AnuragSingh' and password='Anurag@123'."
       ]
     },
     {
-      "id": "REQ-2",
-      "text": "Build 10 fully functional client-side Image Tools, each on a dedicated page: Image Compressor, Image Resizer, JPG to PNG, PNG to JPG, Image Cropper, Image Rotator, Image to WebP, WebP to JPG, Background Remover (basic — remove solid/near-solid background color), and Image Metadata Viewer. Each tool page must have an SEO title, meta description, Open Graph tags, Twitter Card tags, JSON-LD structured data (Tool schema), breadcrumb navigation, FAQ section, and related tools suggestions.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "Image Compressor",
-          "Image Resizer",
-          "JPG to PNG",
-          "PNG to JPG",
-          "Image Cropper",
-          "Image Rotator",
-          "Image to WebP",
-          "WebP to JPG",
-          "Background Remover (basic)",
-          "Image Metadata Viewer",
-          "Have dedicated page",
-          "Have SEO title",
-          "Have description",
-          "Have meta tags",
-          "Have structured data schema"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All 10 image tools are accessible via clean URLs (e.g., /tools/image-compressor)",
-        "Each tool accepts file input and produces a downloadable output",
-        "Image Compressor reduces file size client-side",
-        "Image Resizer accepts width/height inputs and outputs resized image",
-        "JPG↔PNG and WebP conversions work via canvas API",
-        "Image Cropper provides drag-to-crop UI",
-        "Image Rotator supports 90/180/270 degree rotation",
-        "Background Remover removes a user-specified or auto-detected background color",
-        "Image Metadata Viewer displays EXIF/file metadata",
-        "Each page has correct meta title, description, OG tags, Twitter card, JSON-LD Tool schema, breadcrumb, FAQ, and related tools section"
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Build 11 fully functional PDF Tools, each on a dedicated page: PDF to Word (extract text), Word to PDF (HTML/text to PDF), PDF Merge, PDF Split, PDF Compressor, PDF Lock (password protect), PDF Unlock (remove password), Add Watermark to PDF, PDF Page Number Adder, PDF to JPG, and JPG to PDF. Each tool page must have an SEO title, meta description, Open Graph tags, Twitter Card tags, JSON-LD structured data (Tool schema), breadcrumb navigation, FAQ section, and related tools suggestions. Use client-side PDF libraries (e.g., pdf-lib, pdfjs-dist) where possible; use the Motoko backend for any server-side processing needed.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "PDF to Word",
-          "Word to PDF",
-          "PDF Merge",
-          "PDF Split",
-          "PDF Compressor",
-          "PDF Lock",
-          "PDF Unlock",
-          "Add Watermark to PDF",
-          "PDF Page Number Adder",
-          "PDF to JPG",
-          "JPG to PDF"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All 11 PDF tools are accessible via clean URLs (e.g., /tools/pdf-merge)",
-        "PDF Merge accepts multiple PDFs and outputs a single merged PDF",
-        "PDF Split accepts page range inputs and outputs separate PDFs",
-        "PDF Lock accepts a password and outputs a password-protected PDF",
-        "PDF Unlock accepts a password and outputs an unlocked PDF",
-        "Add Watermark accepts text input and overlays it on all pages",
-        "PDF Page Number Adder appends page numbers to each page",
-        "PDF to JPG converts each page to a downloadable JPG",
-        "JPG to PDF combines uploaded images into a single PDF",
-        "Each page has correct meta title, description, OG tags, Twitter card, JSON-LD Tool schema, breadcrumb, FAQ, and related tools section"
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Implement AdSense-compatible ad placement layout throughout the site: (1) Header banner ad space (728×90 leaderboard slot), (2) In-content banner ads between tool sections, (3) Sidebar ad column on tool pages (300×250 rectangle), (4) Sticky bottom ad bar, (5) Delayed popup ad (appears after 5 seconds, dismissible), (6) Between-tools ad blocks on the homepage tool grid. Mark every ad slot with an HTML comment <!-- Google AdSense Banner Here --> and ensure the layout is auto-ads compatible and does not violate AdSense content policies.",
+      "id": "REQ-11",
+      "text": "Add a Settings section to the admin dashboard (`frontend/src/pages/admin/AdminDashboardPage.tsx`) that allows the logged-in admin to change their username and password. The settings form must have fields for: new username, current password (for verification), new password, and confirm new password. On successful save, the new credentials must replace the current ones in AuthContext state (and sessionStorage so they persist for the session). Display a success or error message after the attempt.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-2"
+          "msg-latest"
         ],
         "quotes": [
-          "Header banner ad space",
-          "In-content banner ads",
-          "Sidebar ads",
-          "Sticky bottom ad",
-          "Popup ad (with delay)",
-          "Between-tools ad block",
-          "Auto ads compatible layout",
-          "Clearly comment sections like: <!-- Google AdSense Banner Here -->",
-          "Ensure layout does not violate AdSense policy"
+          "from where i can able to change?"
         ]
       },
       "acceptanceCriteria": [
-        "Header contains a clearly commented 728×90 ad slot placeholder",
-        "Homepage tool grid has ad block placeholders interspersed every 4–6 tools",
-        "Tool pages have a 300×250 sidebar ad placeholder",
-        "A sticky bottom bar ad placeholder is present on all pages",
-        "A delayed popup ad appears after 5 seconds with a close button",
-        "All ad slots have <!-- Google AdSense Banner Here --> comments in the HTML",
-        "No ad slot overlaps content or violates AdSense policy layout guidelines"
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Build a secure admin panel accessible at the /admin route. It must include: a login page with username and password fields and session-based authentication. After login, a dashboard must display: total visitors (all-time), daily visitors, per-tool usage counts, most-used tools ranked list, total page views, basic ad click simulation tracking, and a simple bar/line chart for analytics. Admin access must be gated — unauthenticated users are redirected to /admin/login. Store analytics data (visitor counts, tool usage) in the Motoko backend.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "Secure admin panel",
-          "Login page",
-          "Username",
-          "Password",
-          "Session authentication",
-          "Total visitors",
-          "Daily visitors",
-          "Tool usage count",
-          "Most used tools",
-          "Page views",
-          "Ad click simulation tracking (basic)",
-          "Simple chart analytics",
-          "Admin URL: example.com/admin",
-          "Access only via login"
-        ]
-      },
-      "acceptanceCriteria": [
-        "/admin redirects unauthenticated users to /admin/login",
-        "Login page accepts username and password and creates a session on success",
-        "Dashboard displays total visitors, daily visitors, page views, and tool usage counts",
-        "A ranked list of most-used tools is shown",
-        "A simple chart (bar or line) visualizes daily visitor or tool usage trends",
-        "Ad click simulation counter is displayed on the dashboard",
-        "Backend stores and retrieves visitor counts, page views, and tool usage data"
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Implement comprehensive SEO across the entire site: proper H1/H2 heading hierarchy on every page, unique meta title and meta description per page, Open Graph tags, Twitter Card tags, a sitemap.xml, a robots.txt, FAQ schema markup (JSON-LD) on tool pages, breadcrumb schema, internal linking between related tools, and US-traffic-focused keyword targeting on key pages including: 'free online tools', 'image compressor online', 'pdf converter free', 'resize image online free', 'merge pdf online'.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "Proper H1, H2 structure",
-          "Meta title",
-          "Meta description",
-          "Open Graph tags",
-          "Twitter cards",
-          "Sitemap.xml",
-          "Robots.txt",
-          "Schema markup (FAQ + Tool schema)",
-          "Clean URL structure",
-          "Internal linking",
-          "Breadcrumbs",
-          "Structured JSON-LD",
-          "Focus on US traffic keywords"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Every page has a unique H1 and logical H2 structure",
-        "Every page has unique meta title and meta description containing target keywords",
-        "OG and Twitter Card tags are present on all pages",
-        "sitemap.xml lists all tool pages, blog pages, and legal pages",
-        "robots.txt is correctly configured",
-        "Tool pages include FAQ JSON-LD and BreadcrumbList JSON-LD",
-        "Internal links connect related tools on each tool page"
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "text": "Create five AdSense-compliant legal pages: About Us, Contact (with a working contact form that submits to the backend and stores messages), Privacy Policy, Disclaimer, and Terms & Conditions. Each page must be professionally written, include proper meta tags, and be linked in the footer navigation.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "About Us page",
-          "Contact page (with working form)",
-          "Privacy Policy page",
-          "Disclaimer page",
-          "Terms & Conditions page",
-          "Must be professional and AdSense compliant"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All five legal pages are accessible via clean URLs (/about, /contact, /privacy-policy, /disclaimer, /terms)",
-        "Contact form submits and stores the message in the backend; user sees a success confirmation",
-        "All five pages are linked in the footer",
-        "Each page has its own meta title and description",
-        "Content is professional and covers topics required for AdSense approval"
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "text": "Build a blog section with: a blog index page listing articles by category, individual SEO-optimized article pages with a consistent template (title, meta, OG, JSON-LD Article schema, author, date, related tools sidebar), and at least 3 seed blog posts targeting US keywords relevant to image and PDF tools. Include an internal linking structure that connects blog posts to relevant tool pages.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "Blog section",
-          "Category pages",
-          "SEO-friendly article template",
-          "Internal linking structure",
-          "Related tools suggestions"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Blog index at /blog lists all articles with category filters",
-        "Individual article pages use a consistent template with title, meta, OG, JSON-LD Article schema",
-        "At least 3 seed articles exist targeting image/PDF tool keywords",
-        "Each article page links to at least 2 related tools",
-        "Blog categories are navigable and filterable"
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "text": "Apply a cohesive dark gradient visual theme: deep dark navy/charcoal base (#0d0d1a to #1a1a2e range), vibrant cyan-to-violet gradient accents for buttons and highlights, clean sans-serif typography (system or Google Fonts), card-based tool grid layout with subtle glow hover effects, and a gradient hero section with headline, subheadline, and a search/browse CTA. Enforce this theme consistently across all pages including tool pages, admin panel, legal pages, and blog.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "Modern dark + gradient professional UI",
-          "Clean typography",
-          "Hero section",
-          "Smooth transitions",
-          "Fast performance"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All pages use the dark base color palette consistently",
-        "Buttons and key UI elements use the cyan-to-violet gradient",
-        "Hero section is visually prominent with gradient background and clear CTA",
-        "Tool cards have hover glow/highlight effects",
-        "Typography is clean, readable, and consistent across all pages",
-        "Theme is applied to admin panel and all secondary pages"
+        "A 'Settings' tab or section is visible in the admin dashboard after login.",
+        "The settings form contains fields: new username, current password, new password, confirm new password.",
+        "Submitting with a wrong current password shows a clear error message and does not update credentials.",
+        "Submitting with mismatched new password and confirm password shows a validation error.",
+        "On successful save, the updated username and password are applied immediately — logging out and logging in again with the new credentials works.",
+        "A success notification is displayed after credentials are successfully changed."
       ]
     }
   ],
   "constraints": [
-    "All Motoko logic must live in a single main actor (backend/main.mo)",
-    "Frontend immutable paths must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui",
-    "No Node.js/Express or Next.js — use Motoko backend as specified by the platform",
-    "No external email services for the contact form — store submissions in the Motoko backend only",
-    "No WebSockets or real-time features",
-    "No third-party authentication — session simulation via React state is acceptable for admin",
-    "Ad slots must be placeholder divs with comments only — no actual AdSense script injection",
-    "Footer must display exactly: 'Created by Anurag Singh'",
-    "No owner name in the header or site title"
+    "Do not modify any file under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui.",
+    "Credentials are managed client-side in AuthContext and sessionStorage only — do not store passwords in the Motoko backend."
   ],
   "nonGoals": [
-    "Real Google AdSense script integration (placeholders only)",
-    "Server-side rendering or Next.js/Node.js backend",
-    "Real email delivery for contact form",
-    "Real PDF password encryption via native crypto (basic simulation acceptable)",
-    "AI-powered background removal (basic color-based removal only)",
-    "Real-time analytics or WebSocket-based live visitor tracking",
-    "User accounts or user authentication beyond admin login",
-    "Payment processing or premium tiers",
-    "Deployment scripts or CI/CD pipelines"
+    "Persistent server-side credential storage across canister upgrades.",
+    "Multi-user admin accounts.",
+    "Email-based password reset flow.",
+    "Any changes to the analytics dashboard data or chart logic."
   ],
   "imageRequirements": {
-    "required": [
-      "Dark gradient hero background with abstract geometric grid lines and subtle cyan/violet glow nodes — wide format banner (hero-bg.dim_1920x600.png)",
-      "Site logo mark — minimalist icon combining an image frame and PDF page symbol with cyan-violet gradient fill (logo-icon.dim_128x128.png)",
-      "Open Graph default social share image with site name 'ToolsHub Free' on dark gradient background (og-default.dim_1200x630.png)"
-    ],
+    "required": [],
     "edits": []
   }
 }

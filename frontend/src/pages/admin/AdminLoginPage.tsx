@@ -3,7 +3,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { useAuth } from '@/contexts/AuthContext';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Zap, Eye, EyeOff, Lock, AlertCircle } from 'lucide-react';
+import { Eye, EyeOff, Lock, AlertCircle } from 'lucide-react';
 
 export function AdminLoginPage() {
   const { login, isAuthenticated } = useAuth();
@@ -22,7 +22,7 @@ export function AdminLoginPage() {
     e.preventDefault();
     setError('');
     setIsLoading(true);
-    await new Promise(r => setTimeout(r, 500)); // simulate async
+    await new Promise(r => setTimeout(r, 500));
     const success = login(username, password);
     if (success) {
       navigate({ to: '/admin/dashboard' });
@@ -51,7 +51,7 @@ export function AdminLoginPage() {
                 id="username"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
-                placeholder="admin"
+                placeholder="Enter username"
                 autoComplete="username"
                 required
               />
@@ -90,15 +90,15 @@ export function AdminLoginPage() {
               className="btn-gradient w-full py-3 rounded-xl font-semibold flex items-center justify-center gap-2"
             >
               {isLoading ? (
-                <><div className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin" /> Signing in...</>
+                <>
+                  <div className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin" />
+                  Signing in...
+                </>
               ) : (
                 'Sign In'
               )}
             </button>
           </form>
-          <p className="text-center text-xs text-muted-foreground mt-4">
-            Default: admin / admin123
-          </p>
         </div>
       </div>
     </div>
