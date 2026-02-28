@@ -1,0 +1,143 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Production-ready 'Free Online Image & PDF Tools' website with 20+ working tools, AdSense monetization, admin panel, full SEO optimization, legal pages, blog section, and Node.js/Express or Next.js backend. Footer credits: 'Created by Anurag Singh'.",
+  "architectural_notes": [
+    "Tech stack: Node.js + Express OR Next.js; production-ready, scalable to 100k+ daily visitors",
+    "Each tool has a dedicated page with SEO title, description, meta tags, and structured data schema",
+    "Admin panel at /admin — session-authenticated, never expose secrets",
+    "Footer must always display 'Created by Anurag Singh' and SEO hashtags",
+    "Ad placement must comply with AdSense policies; all ad zones clearly commented in HTML"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Dark gradient hero background with abstract geometric grid lines and subtle cyan/violet glow nodes — wide format banner (hero-bg.dim_1920x600.png)\n- Site logo mark — minimalist icon combining an image frame and PDF page symbol with cyan-violet gradient fill (logo-icon.dim_128x128.png)\n- Open Graph default social share image with site name 'ToolsHub Free' on dark gradient background (og-default.dim_1200x630.png)",
+  "existing_features": [
+    {
+      "id": "feature-implement-a-modern-dark-gradient-professional-ui-with-a-hero-section-clean-typography-tool-category-tabs-image-tools-pdf-tools-smooth-css-transitions-lazy-loading-for-tool-cards-and-a-layout-optimized-for-core-web-vitals-do-not-include-any-owner-name-in-the-header-or-title-the-footer-must-display-created-by-anurag-singh-and-seo-hashtags-freeonlinetools-imagecompressor-pdfconverter-onlinetools-adsensewebsite-seotools-webtools-digitaltools",
+      "title": "Implement a modern dark + gradient professional UI with a hero section, clean typography, tool category tabs (Image Tools / PDF Tools), smooth CSS transitions, lazy loading for tool cards, and a layout optimized for Core Web Vitals. Do NOT include any owner name in the header or title. The footer must display 'Created by Anurag Singh' and SEO hashtags: #FreeOnlineTools #ImageCompressor #PDFConverter #OnlineTools #AdSenseWebsite #SEOTools #WebTools #DigitalTools.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-10-fully-functional-client-side-image-tools-each-on-a-dedicated-page-image-compressor-image-resizer-jpg-to-png-png-to-jpg-image-cropper-image-rotator-image-to-webp-webp-to-jpg-background-remover-basic-remove-solid-near-solid-background-color-and-image-metadata-viewer-each-tool-page-must-have-an-seo-title-meta-description-open-graph-tags-twitter-card-tags-json-ld-structured-data-tool-schema-breadcrumb-navigation-faq-section-and-related-tools-suggestions",
+      "title": "Build 10 fully functional client-side Image Tools, each on a dedicated page: Image Compressor, Image Resizer, JPG to PNG, PNG to JPG, Image Cropper, Image Rotator, Image to WebP, WebP to JPG, Background Remover (basic — remove solid/near-solid background color), and Image Metadata Viewer. Each tool page must have an SEO title, meta description, Open Graph tags, Twitter Card tags, JSON-LD structured data (Tool schema), breadcrumb navigation, FAQ section, and related tools suggestions.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-11-fully-functional-pdf-tools-each-on-a-dedicated-page-pdf-to-word-extract-text-word-to-pdf-html-text-to-pdf-pdf-merge-pdf-split-pdf-compressor-pdf-lock-password-protect-pdf-unlock-remove-password-add-watermark-to-pdf-pdf-page-number-adder-pdf-to-jpg-and-jpg-to-pdf-each-tool-page-must-have-an-seo-title-meta-description-open-graph-tags-twitter-card-tags-json-ld-structured-data-tool-schema-breadcrumb-navigation-faq-section-and-related-tools-suggestions-use-client-side-pdf-libraries-e-g-pdf-lib-pdfjs-dist-where-possible-use-the-motoko-backend-for-any-server-side-processing-needed",
+      "title": "Build 11 fully functional PDF Tools, each on a dedicated page: PDF to Word (extract text), Word to PDF (HTML/text to PDF), PDF Merge, PDF Split, PDF Compressor, PDF Lock (password protect), PDF Unlock (remove password), Add Watermark to PDF, PDF Page Number Adder, PDF to JPG, and JPG to PDF. Each tool page must have an SEO title, meta description, Open Graph tags, Twitter Card tags, JSON-LD structured data (Tool schema), breadcrumb navigation, FAQ section, and related tools suggestions. Use client-side PDF libraries (e.g., pdf-lib, pdfjs-dist) where possible; use the Motoko backend for any server-side processing needed.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-adsense-compatible-ad-placement-layout-throughout-the-site-1-header-banner-ad-space-728-90-leaderboard-slot-2-in-content-banner-ads-between-tool-sections-3-sidebar-ad-column-on-tool-pages-300-250-rectangle-4-sticky-bottom-ad-bar-5-delayed-popup-ad-appears-after-5-seconds-dismissible-6-between-tools-ad-blocks-on-the-homepage-tool-grid-mark-every-ad-slot-with-an-html-comment-google-adsense-banner-here-and-ensure-the-layout-is-auto-ads-compatible-and-does-not-violate-adsense-content-policies",
+      "title": "Implement AdSense-compatible ad placement layout throughout the site: (1) Header banner ad space (728×90 leaderboard slot), (2) In-content banner ads between tool sections, (3) Sidebar ad column on tool pages (300×250 rectangle), (4) Sticky bottom ad bar, (5) Delayed popup ad (appears after 5 seconds, dismissible), (6) Between-tools ad blocks on the homepage tool grid. Mark every ad slot with an HTML comment <!-- Google AdSense Banner Here --> and ensure the layout is auto-ads compatible and does not violate AdSense content policies.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-secure-admin-panel-accessible-at-the-admin-route-it-must-include-a-login-page-with-username-and-password-fields-and-session-based-authentication-after-login-a-dashboard-must-display-total-visitors-all-time-daily-visitors-per-tool-usage-counts-most-used-tools-ranked-list-total-page-views-basic-ad-click-simulation-tracking-and-a-simple-bar-line-chart-for-analytics-admin-access-must-be-gated-unauthenticated-users-are-redirected-to-admin-login-store-analytics-data-visitor-counts-tool-usage-in-the-motoko-backend",
+      "title": "Build a secure admin panel accessible at the /admin route. It must include: a login page with username and password fields and session-based authentication. After login, a dashboard must display: total visitors (all-time), daily visitors, per-tool usage counts, most-used tools ranked list, total page views, basic ad click simulation tracking, and a simple bar/line chart for analytics. Admin access must be gated — unauthenticated users are redirected to /admin/login. Store analytics data (visitor counts, tool usage) in the Motoko backend.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-comprehensive-seo-across-the-entire-site-proper-h1-h2-heading-hierarchy-on-every-page-unique-meta-title-and-meta-description-per-page-open-graph-tags-twitter-card-tags-a-sitemap-xml-a-robots-txt-faq-schema-markup-json-ld-on-tool-pages-breadcrumb-schema-internal-linking-between-related-tools-and-us-traffic-focused-keyword-targeting-on-key-pages-including-free-online-tools-image-compressor-online-pdf-converter-free-resize-image-online-free-merge-pdf-online",
+      "title": "Implement comprehensive SEO across the entire site: proper H1/H2 heading hierarchy on every page, unique meta title and meta description per page, Open Graph tags, Twitter Card tags, a sitemap.xml, a robots.txt, FAQ schema markup (JSON-LD) on tool pages, breadcrumb schema, internal linking between related tools, and US-traffic-focused keyword targeting on key pages including: 'free online tools', 'image compressor online', 'pdf converter free', 'resize image online free', 'merge pdf online'.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-five-adsense-compliant-legal-pages-about-us-contact-with-a-working-contact-form-that-submits-to-the-backend-and-stores-messages-privacy-policy-disclaimer-and-terms-conditions-each-page-must-be-professionally-written-include-proper-meta-tags-and-be-linked-in-the-footer-navigation",
+      "title": "Create five AdSense-compliant legal pages: About Us, Contact (with a working contact form that submits to the backend and stores messages), Privacy Policy, Disclaimer, and Terms & Conditions. Each page must be professionally written, include proper meta tags, and be linked in the footer navigation.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-blog-section-with-a-blog-index-page-listing-articles-by-category-individual-seo-optimized-article-pages-with-a-consistent-template-title-meta-og-json-ld-article-schema-author-date-related-tools-sidebar-and-at-least-3-seed-blog-posts-targeting-us-keywords-relevant-to-image-and-pdf-tools-include-an-internal-linking-structure-that-connects-blog-posts-to-relevant-tool-pages",
+      "title": "Build a blog section with: a blog index page listing articles by category, individual SEO-optimized article pages with a consistent template (title, meta, OG, JSON-LD Article schema, author, date, related tools sidebar), and at least 3 seed blog posts targeting US keywords relevant to image and PDF tools. Include an internal linking structure that connects blog posts to relevant tool pages.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-cohesive-dark-gradient-visual-theme-deep-dark-navy-charcoal-base-0d0d1a-to-1a1a2e-range-vibrant-cyan-to-violet-gradient-accents-for-buttons-and-highlights-clean-sans-serif-typography-system-or-google-fonts-card-based-tool-grid-layout-with-subtle-glow-hover-effects-and-a-gradient-hero-section-with-headline-subheadline-and-a-search-browse-cta-enforce-this-theme-consistently-across-all-pages-including-tool-pages-admin-panel-legal-pages-and-blog",
+      "title": "Apply a cohesive dark gradient visual theme: deep dark navy/charcoal base (#0d0d1a to #1a1a2e range), vibrant cyan-to-violet gradient accents for buttons and highlights, clean sans-serif typography (system or Google Fonts), card-based tool grid layout with subtle glow hover effects, and a gradient hero section with headline, subheadline, and a search/browse CTA. Enforce this theme consistently across all pages including tool pages, admin panel, legal pages, and blog.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "20+ working image & PDF tools (Image Compressor, Resizer, JPG/PNG converters, Cropper, Rotator, WebP, Background Remover, Metadata Viewer, PDF to Word, Word to PDF, Merge, Split, Compressor, Lock, Unlock, Watermark, Page Numbers, PDF to JPG, JPG to PDF)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Modern dark + gradient UI with hero section, tool category tabs, smooth transitions, lazy loading, Core Web Vitals optimized",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "AdSense monetization layout: header banner, in-content ads, sidebar ads, sticky bottom ad, popup ad with delay, between-tools ad blocks, auto ads compatible, policy-compliant",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Secure admin panel at /admin with login (username/password/session), dashboard showing visitors, tool usage stats, page views, ad click tracking, chart analytics",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Full SEO: H1/H2 structure, meta tags, OG tags, Twitter cards, sitemap.xml, robots.txt, schema markup (FAQ + Tool), JSON-LD, breadcrumbs, internal linking, US traffic keyword focus",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Legal pages: About Us, Contact (with working form), Privacy Policy, Disclaimer, Terms & Conditions — AdSense compliant",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Blog section with category pages, SEO-friendly article template, related tools suggestions, FAQ section under each tool",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Node.js + Express or Next.js backend with clean folder structure, env variables, rate limiting, input validation, secure sessions, Helmet middleware",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Free Online Image & PDF Tools",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

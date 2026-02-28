@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    --background: 0.12 0.015 265;
+    --foreground: 0.95 0.01 265;
+    --card: 0.16 0.018 265;
+    --card-foreground: 0.95 0.01 265;
+    --popover: 0.18 0.02 265;
+    --popover-foreground: 0.95 0.01 265;
+    --primary: 0.72 0.19 195;
+    --primary-foreground: 0.08 0.01 265;
+    --secondary: 0.22 0.025 265;
+    --secondary-foreground: 0.9 0.01 265;
+    --muted: 0.2 0.02 265;
+    --muted-foreground: 0.6 0.03 265;
+    --accent: 0.65 0.22 290;
+    --accent-foreground: 0.95 0.01 265;
+    --destructive: 0.62 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+    --border: 0.28 0.025 265;
+    --input: 0.22 0.02 265;
+    --ring: 0.72 0.19 195;
+    --chart-1: 0.72 0.19 195;
+    --chart-2: 0.65 0.22 290;
+    --chart-3: 0.75 0.18 160;
+    --chart-4: 0.78 0.17 55;
+    --chart-5: 0.68 0.2 25;
+    --sidebar: 0.14 0.016 265;
+    --sidebar-foreground: 0.95 0.01 265;
+    --sidebar-primary: 0.72 0.19 195;
+    --sidebar-primary-foreground: 0.08 0.01 265;
+    --sidebar-accent: 0.2 0.02 265;
+    --sidebar-accent-foreground: 0.9 0.01 265;
+    --sidebar-border: 0.28 0.025 265;
+    --sidebar-ring: 0.72 0.19 195;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, oklch(0.72 0.19 195), oklch(0.65 0.22 290));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, oklch(0.72 0.19 195), oklch(0.65 0.22 290));
+  }
+
+  .gradient-border {
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+
+  .card-glow {
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+
+  .card-glow:hover {
+    box-shadow: 0 0 20px oklch(0.72 0.19 195 / 0.25), 0 0 40px oklch(0.65 0.22 290 / 0.1);
+    transform: translateY(-2px);
+  }
+
+  .hero-gradient {
+    background: radial-gradient(ellipse at 20% 50%, oklch(0.72 0.19 195 / 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, oklch(0.65 0.22 290 / 0.15) 0%, transparent 50%),
+                linear-gradient(180deg, oklch(0.1 0.015 265) 0%, oklch(0.12 0.015 265) 100%);
+  }
+
+  .tool-card-hover {
+    transition: all 0.25s ease;
+  }
+
+  .tool-card-hover:hover {
+    border-color: oklch(0.72 0.19 195 / 0.5);
+    box-shadow: 0 4px 24px oklch(0.72 0.19 195 / 0.2);
+    transform: translateY(-3px);
+  }
+
+  .ad-placeholder {
+    background: repeating-linear-gradient(
+      45deg,
+      oklch(0.18 0.02 265),
+      oklch(0.18 0.02 265) 10px,
+      oklch(0.2 0.02 265) 10px,
+      oklch(0.2 0.02 265) 20px
+    );
+    border: 1px dashed oklch(0.35 0.03 265);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: oklch(0.45 0.03 265);
+    font-size: 0.75rem;
+    font-family: monospace;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(0.35 0.03 265) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: oklch(0.35 0.03 265);
+    border-radius: 2px;
+  }
+
+  .upload-zone {
+    border: 2px dashed oklch(0.35 0.03 265);
+    transition: all 0.2s ease;
+  }
+
+  .upload-zone:hover,
+  .upload-zone.drag-over {
+    border-color: oklch(0.72 0.19 195 / 0.7);
+    background: oklch(0.72 0.19 195 / 0.05);
+  }
+
+  .btn-gradient {
+    background: linear-gradient(135deg, oklch(0.72 0.19 195), oklch(0.65 0.22 290));
+    color: oklch(0.08 0.01 265);
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .btn-gradient:hover {
+    opacity: 0.9;
+    box-shadow: 0 4px 16px oklch(0.72 0.19 195 / 0.4);
+    transform: translateY(-1px);
+  }
+
+  .btn-gradient:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, oklch(0.35 0.03 265), transparent);
+  }
+
+  .nav-link {
+    transition: color 0.2s ease;
+    color: oklch(0.7 0.03 265);
+  }
+
+  .nav-link:hover {
+    color: oklch(0.72 0.19 195);
+  }
+
+  .nav-link.active {
+    color: oklch(0.72 0.19 195);
+  }
+
+  .prose-dark {
+    color: oklch(0.8 0.02 265);
+    line-height: 1.8;
+  }
+
+  .prose-dark h2 {
+    color: oklch(0.95 0.01 265);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose-dark h3 {
+    color: oklch(0.9 0.01 265);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-dark p {
+    margin-bottom: 1rem;
+  }
+
+  .prose-dark ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose-dark li {
+    margin-bottom: 0.25rem;
+  }
+}
+
+/* Smooth page transitions */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-enter {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Custom scrollbar for webkit */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(0.14 0.016 265);
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.3 0.025 265);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.4 0.03 265);
+}

@@ -1,0 +1,697 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Free Online Image & PDF Tools Website - Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Implement modern dark gradient UI with hero section, tool category tabs, smooth transitions, and SEO-optimized footer",
+      "acceptanceCriteria": [
+        "Homepage has a prominent hero section with headline and call-to-action",
+        "Tab navigation switches between Image Tools and PDF Tools categories",
+        "Dark background with gradient accents applied consistently",
+        "Footer displays 'Created by Anurag Singh' and all listed SEO hashtags",
+        "No owner name appears in the header or page title",
+        "Layout is fully mobile responsive"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define dark gradient color scheme (navy/charcoal base #0d0d1a to #1a1a2e), cyan-to-violet gradient utilities, smooth transition classes, and glow effect utilities for the entire application theme"
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with custom dark gradient colors, cyan-violet gradient stops, card glow shadows, and transition timing for cohesive UI"
+        },
+        {
+          "path": "frontend/src/components/layout/Header.tsx",
+          "operation": "create",
+          "description": "Create header component with logo (using generated logo-icon.dim_128x128.png from frontend/public/assets/generated/), navigation links to tools categories, and responsive mobile menu. Do not include owner name in header or title"
+        },
+        {
+          "path": "frontend/src/components/layout/Footer.tsx",
+          "operation": "create",
+          "description": "Create footer component displaying 'Created by Anurag Singh', SEO hashtags (#FreeOnlineTools #ImageCompressor #PDFConverter #OnlineTools #AdSenseWebsite #SEOTools #WebTools #DigitalTools), and links to legal pages"
+        },
+        {
+          "path": "frontend/src/components/home/HeroSection.tsx",
+          "operation": "create",
+          "description": "Create hero section with generated hero background image (frontend/public/assets/generated/hero-bg.dim_1920x600.png), headline, subheadline, and CTA buttons using cyan-violet gradient styling"
+        },
+        {
+          "path": "frontend/src/components/home/ToolCategoryTabs.tsx",
+          "operation": "create",
+          "description": "Create tab navigation component switching between Image Tools and PDF Tools categories with smooth transitions and active state indicators"
+        },
+        {
+          "path": "frontend/src/components/home/ToolGrid.tsx",
+          "operation": "create",
+          "description": "Create tool grid layout component with lazy loading, card-based design, hover glow effects, and responsive columns for displaying tool cards"
+        },
+        {
+          "path": "frontend/src/components/home/ToolCard.tsx",
+          "operation": "create",
+          "description": "Create individual tool card component with icon, title, description, and link to tool page, applying dark theme with gradient hover effects"
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "create",
+          "description": "Create homepage assembling HeroSection, ToolCategoryTabs, ToolGrid components with proper SEO meta tags, Open Graph tags using generated og-default.dim_1200x630.png from frontend/public/assets/generated/, and JSON-LD WebSite schema"
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire HomePage as the root route, integrate Header and Footer layout components to wrap all routes, and apply global dark gradient theme"
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Build 10 fully functional client-side Image Tools with dedicated SEO-optimized pages",
+      "acceptanceCriteria": [
+        "All 10 image tools are accessible via clean URLs (e.g., /tools/image-compressor)",
+        "Each tool accepts file input and produces a downloadable output",
+        "Image Compressor reduces file size client-side",
+        "Image Resizer accepts width/height inputs and outputs resized image",
+        "JPG↔PNG and WebP conversions work via canvas API",
+        "Image Cropper provides drag-to-crop UI",
+        "Image Rotator supports 90/180/270 degree rotation",
+        "Background Remover removes a user-specified or auto-detected background color",
+        "Image Metadata Viewer displays EXIF/file metadata",
+        "Each page has correct meta title, description, OG tags, Twitter card, JSON-LD Tool schema, breadcrumb, FAQ, and related tools section"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useImageCompression.ts",
+          "operation": "create",
+          "description": "Create hook for client-side image compression using canvas API with quality adjustment and size reduction logic"
+        },
+        {
+          "path": "frontend/src/hooks/useImageResize.ts",
+          "operation": "create",
+          "description": "Create hook for image resizing accepting width/height parameters and outputting resized image via canvas manipulation"
+        },
+        {
+          "path": "frontend/src/hooks/useImageConversion.ts",
+          "operation": "create",
+          "description": "Create hook for JPG/PNG/WebP format conversions using canvas toDataURL and toBlob methods"
+        },
+        {
+          "path": "frontend/src/hooks/useImageCrop.ts",
+          "operation": "create",
+          "description": "Create hook for image cropping with drag selection area and canvas clipping logic"
+        },
+        {
+          "path": "frontend/src/hooks/useImageRotation.ts",
+          "operation": "create",
+          "description": "Create hook for image rotation supporting 90/180/270 degree transformations via canvas context rotation"
+        },
+        {
+          "path": "frontend/src/hooks/useBackgroundRemoval.ts",
+          "operation": "create",
+          "description": "Create hook for basic background removal detecting solid/near-solid background color and replacing with transparency via pixel manipulation"
+        },
+        {
+          "path": "frontend/src/hooks/useImageMetadata.ts",
+          "operation": "create",
+          "description": "Create hook for extracting EXIF and file metadata from uploaded images using EXIF.js or similar client-side library"
+        },
+        {
+          "path": "frontend/src/components/tools/ImageToolTemplate.tsx",
+          "operation": "create",
+          "description": "Create reusable template component for image tool pages including file upload area, processing controls, preview pane, download button, breadcrumb navigation, FAQ section, and related tools sidebar"
+        },
+        {
+          "path": "frontend/src/components/tools/SEOToolHead.tsx",
+          "operation": "create",
+          "description": "Create component for rendering SEO meta tags (title, description, OG tags, Twitter cards, JSON-LD Tool schema, breadcrumb schema) accepting tool-specific content as props"
+        },
+        {
+          "path": "frontend/src/pages/tools/ImageCompressorPage.tsx",
+          "operation": "create",
+          "description": "Create Image Compressor tool page using ImageToolTemplate and useImageCompression hook, with SEO meta tags, FAQ about compression, and related tools links"
+        },
+        {
+          "path": "frontend/src/pages/tools/ImageResizerPage.tsx",
+          "operation": "create",
+          "description": "Create Image Resizer tool page using ImageToolTemplate and useImageResize hook, with width/height input fields, SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/JpgToPngPage.tsx",
+          "operation": "create",
+          "description": "Create JPG to PNG converter page using ImageToolTemplate and useImageConversion hook for JPG→PNG conversion, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/PngToJpgPage.tsx",
+          "operation": "create",
+          "description": "Create PNG to JPG converter page using ImageToolTemplate and useImageConversion hook for PNG→JPG conversion, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/ImageCropperPage.tsx",
+          "operation": "create",
+          "description": "Create Image Cropper tool page using ImageToolTemplate and useImageCrop hook with drag-to-crop UI, SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/ImageRotatorPage.tsx",
+          "operation": "create",
+          "description": "Create Image Rotator tool page using ImageToolTemplate and useImageRotation hook with 90/180/270 degree rotation buttons, SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/ImageToWebpPage.tsx",
+          "operation": "create",
+          "description": "Create Image to WebP converter page using ImageToolTemplate and useImageConversion hook for WebP output, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/WebpToJpgPage.tsx",
+          "operation": "create",
+          "description": "Create WebP to JPG converter page using ImageToolTemplate and useImageConversion hook for WebP→JPG conversion, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/BackgroundRemoverPage.tsx",
+          "operation": "create",
+          "description": "Create Background Remover tool page using ImageToolTemplate and useBackgroundRemoval hook with color picker for target background color, SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/ImageMetadataViewerPage.tsx",
+          "operation": "create",
+          "description": "Create Image Metadata Viewer tool page using ImageToolTemplate and useImageMetadata hook displaying EXIF data in structured format, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register routes for all 10 image tool pages (/tools/image-compressor, /tools/image-resizer, /tools/jpg-to-png, /tools/png-to-jpg, /tools/image-cropper, /tools/image-rotator, /tools/image-to-webp, /tools/webp-to-jpg, /tools/background-remover, /tools/image-metadata-viewer) in the router configuration"
+        },
+        {
+          "path": "frontend/src/utils/toolsData.ts",
+          "operation": "create",
+          "description": "Create data file defining all image tools metadata (name, description, icon, route, category, related tools, FAQ content) for use across components and SEO generation"
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build 11 fully functional client-side PDF Tools with dedicated SEO-optimized pages",
+      "acceptanceCriteria": [
+        "All 11 PDF tools are accessible via clean URLs (e.g., /tools/pdf-merge)",
+        "PDF Merge accepts multiple PDFs and outputs a single merged PDF",
+        "PDF Split accepts page range inputs and outputs separate PDFs",
+        "PDF Lock accepts a password and outputs a password-protected PDF",
+        "PDF Unlock accepts a password and outputs an unlocked PDF",
+        "Add Watermark accepts text input and overlays it on all pages",
+        "PDF Page Number Adder appends page numbers to each page",
+        "PDF to JPG converts each page to a downloadable JPG",
+        "JPG to PDF combines uploaded images into a single PDF",
+        "Each page has correct meta title, description, OG tags, Twitter card, JSON-LD Tool schema, breadcrumb, FAQ, and related tools section"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/usePdfMerge.ts",
+          "operation": "create",
+          "description": "Create hook for merging multiple PDFs using pdf-lib, accepting PDF file array and outputting single merged PDF blob"
+        },
+        {
+          "path": "frontend/src/hooks/usePdfSplit.ts",
+          "operation": "create",
+          "description": "Create hook for splitting PDF by page ranges using pdf-lib, outputting separate PDF blobs for each range"
+        },
+        {
+          "path": "frontend/src/hooks/usePdfCompression.ts",
+          "operation": "create",
+          "description": "Create hook for basic PDF compression using pdf-lib optimization methods to reduce file size"
+        },
+        {
+          "path": "frontend/src/hooks/usePdfLock.ts",
+          "operation": "create",
+          "description": "Create hook for adding password protection to PDF using pdf-lib encryption (basic simulation acceptable per constraints)"
+        },
+        {
+          "path": "frontend/src/hooks/usePdfUnlock.ts",
+          "operation": "create",
+          "description": "Create hook for removing password protection from PDF using pdf-lib decryption (basic simulation acceptable per constraints)"
+        },
+        {
+          "path": "frontend/src/hooks/usePdfWatermark.ts",
+          "operation": "create",
+          "description": "Create hook for adding text watermark to all PDF pages using pdf-lib text overlay rendering"
+        },
+        {
+          "path": "frontend/src/hooks/usePdfPageNumbers.ts",
+          "operation": "create",
+          "description": "Create hook for adding page numbers to PDF using pdf-lib text rendering at specified position on each page"
+        },
+        {
+          "path": "frontend/src/hooks/usePdfToJpg.ts",
+          "operation": "create",
+          "description": "Create hook for converting PDF pages to JPG images using pdfjs-dist for rendering and canvas toDataURL for image export"
+        },
+        {
+          "path": "frontend/src/hooks/useJpgToPdf.ts",
+          "operation": "create",
+          "description": "Create hook for converting multiple JPG images to single PDF using pdf-lib to embed images as pages"
+        },
+        {
+          "path": "frontend/src/hooks/usePdfToWord.ts",
+          "operation": "create",
+          "description": "Create hook for extracting text from PDF using pdfjs-dist text extraction API and formatting as plain text output"
+        },
+        {
+          "path": "frontend/src/hooks/useWordToPdf.ts",
+          "operation": "create",
+          "description": "Create hook for converting HTML/text content to PDF using pdf-lib text rendering with basic formatting"
+        },
+        {
+          "path": "frontend/src/components/tools/PdfToolTemplate.tsx",
+          "operation": "create",
+          "description": "Create reusable template component for PDF tool pages including file upload area, processing controls, preview pane, download button, breadcrumb navigation, FAQ section, and related tools sidebar"
+        },
+        {
+          "path": "frontend/src/pages/tools/PdfToWordPage.tsx",
+          "operation": "create",
+          "description": "Create PDF to Word tool page using PdfToolTemplate and usePdfToWord hook for text extraction, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/WordToPdfPage.tsx",
+          "operation": "create",
+          "description": "Create Word to PDF tool page using PdfToolTemplate and useWordToPdf hook accepting text/HTML input, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/PdfMergePage.tsx",
+          "operation": "create",
+          "description": "Create PDF Merge tool page using PdfToolTemplate and usePdfMerge hook with multiple file upload support, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/PdfSplitPage.tsx",
+          "operation": "create",
+          "description": "Create PDF Split tool page using PdfToolTemplate and usePdfSplit hook with page range input fields, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/PdfCompressorPage.tsx",
+          "operation": "create",
+          "description": "Create PDF Compressor tool page using PdfToolTemplate and usePdfCompression hook, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/PdfLockPage.tsx",
+          "operation": "create",
+          "description": "Create PDF Lock tool page using PdfToolTemplate and usePdfLock hook with password input field, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/PdfUnlockPage.tsx",
+          "operation": "create",
+          "description": "Create PDF Unlock tool page using PdfToolTemplate and usePdfUnlock hook with password input field, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/PdfWatermarkPage.tsx",
+          "operation": "create",
+          "description": "Create Add Watermark to PDF tool page using PdfToolTemplate and usePdfWatermark hook with text input and positioning controls, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/PdfPageNumbersPage.tsx",
+          "operation": "create",
+          "description": "Create PDF Page Number Adder tool page using PdfToolTemplate and usePdfPageNumbers hook with position/format options, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/PdfToJpgPage.tsx",
+          "operation": "create",
+          "description": "Create PDF to JPG tool page using PdfToolTemplate and usePdfToJpg hook outputting JPG for each page, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/pages/tools/JpgToPdfPage.tsx",
+          "operation": "create",
+          "description": "Create JPG to PDF tool page using PdfToolTemplate and useJpgToPdf hook with multiple image upload support, with SEO meta tags, FAQ, and related tools"
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register routes for all 11 PDF tool pages (/tools/pdf-to-word, /tools/word-to-pdf, /tools/pdf-merge, /tools/pdf-split, /tools/pdf-compressor, /tools/pdf-lock, /tools/pdf-unlock, /tools/pdf-watermark, /tools/pdf-page-numbers, /tools/pdf-to-jpg, /tools/jpg-to-pdf) in the router configuration"
+        },
+        {
+          "path": "frontend/src/utils/toolsData.ts",
+          "operation": "modify",
+          "description": "Add all 11 PDF tools metadata (name, description, icon, route, category, related tools, FAQ content) to the tools data export"
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement AdSense-compatible ad placement layout throughout the site",
+      "acceptanceCriteria": [
+        "Header contains a clearly commented 728×90 ad slot placeholder",
+        "Homepage tool grid has ad block placeholders interspersed every 4–6 tools",
+        "Tool pages have a 300×250 sidebar ad placeholder",
+        "A sticky bottom bar ad placeholder is present on all pages",
+        "A delayed popup ad appears after 5 seconds with a close button",
+        "All ad slots have <!-- Google AdSense Banner Here --> comments in the HTML",
+        "No ad slot overlaps content or violates AdSense policy layout guidelines"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ads/AdBanner.tsx",
+          "operation": "create",
+          "description": "Create reusable ad banner placeholder component accepting size props (e.g., 728x90, 300x250) and rendering empty div with <!-- Google AdSense Banner Here --> HTML comment and appropriate dimensions"
+        },
+        {
+          "path": "frontend/src/components/ads/StickyBottomAd.tsx",
+          "operation": "create",
+          "description": "Create sticky bottom ad bar component with <!-- Google AdSense Banner Here --> comment, fixed positioning, and close button respecting mobile layout"
+        },
+        {
+          "path": "frontend/src/components/ads/PopupAd.tsx",
+          "operation": "create",
+          "description": "Create delayed popup ad component with <!-- Google AdSense Banner Here --> comment, appearing after 5 seconds, with dismissible overlay and close button"
+        },
+        {
+          "path": "frontend/src/components/layout/Header.tsx",
+          "operation": "modify",
+          "description": "Integrate 728×90 leaderboard AdBanner component in header with proper spacing and <!-- Google AdSense Banner Here --> comment"
+        },
+        {
+          "path": "frontend/src/components/home/ToolGrid.tsx",
+          "operation": "modify",
+          "description": "Insert AdBanner placeholders between tool cards every 4–6 tools with <!-- Google AdSense Banner Here --> comments and responsive sizing"
+        },
+        {
+          "path": "frontend/src/components/tools/ImageToolTemplate.tsx",
+          "operation": "modify",
+          "description": "Add 300×250 sidebar AdBanner component to tool template with <!-- Google AdSense Banner Here --> comment and responsive column layout"
+        },
+        {
+          "path": "frontend/src/components/tools/PdfToolTemplate.tsx",
+          "operation": "modify",
+          "description": "Add 300×250 sidebar AdBanner component to PDF tool template with <!-- Google AdSense Banner Here --> comment and responsive column layout"
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Integrate StickyBottomAd and PopupAd components at root level to appear across all pages, ensuring they do not violate AdSense layout policies"
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Build secure admin panel with analytics dashboard and session-based authentication",
+      "acceptanceCriteria": [
+        "/admin redirects unauthenticated users to /admin/login",
+        "Login page accepts username and password and creates a session on success",
+        "Dashboard displays total visitors, daily visitors, page views, and tool usage counts",
+        "A ranked list of most-used tools is shown",
+        "A simple chart (bar or line) visualizes daily visitor or tool usage trends",
+        "Ad click simulation counter is displayed on the dashboard",
+        "Backend stores and retrieves visitor counts, page views, and tool usage data"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/contexts/AuthContext.tsx",
+          "operation": "create",
+          "description": "Create authentication context managing admin session state using React state (no external auth per constraints), providing login/logout methods and isAuthenticated flag"
+        },
+        {
+          "path": "frontend/src/components/admin/ProtectedRoute.tsx",
+          "operation": "create",
+          "description": "Create protected route wrapper component checking authentication state and redirecting to /admin/login if unauthenticated"
+        },
+        {
+          "path": "frontend/src/pages/admin/AdminLoginPage.tsx",
+          "operation": "create",
+          "description": "Create admin login page with username and password fields, form submission creating session via AuthContext, and redirect to /admin/dashboard on success"
+        },
+        {
+          "path": "frontend/src/pages/admin/AdminDashboardPage.tsx",
+          "operation": "create",
+          "description": "Create admin dashboard page fetching analytics from backend via getDailyAnalytics, displaying total visitors, daily visitors, page views, tool usage counts, most-used tools ranked list, ad click simulation counter, and simple bar/line chart using a charting library (e.g., recharts)"
+        },
+        {
+          "path": "frontend/src/hooks/useAnalytics.ts",
+          "operation": "create",
+          "description": "Create hook for fetching and updating analytics data using backend updateAnalytics and getDailyAnalytics methods, managing loading and error states"
+        },
+        {
+          "path": "frontend/src/components/admin/AnalyticsChart.tsx",
+          "operation": "create",
+          "description": "Create chart component rendering daily visitor or tool usage trends as bar or line chart using recharts library with dark theme styling"
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap App with AuthContext provider, register /admin/login and /admin/dashboard routes, and wrap /admin/dashboard with ProtectedRoute component to enforce authentication"
+        },
+        {
+          "path": "frontend/src/hooks/usePageTracking.ts",
+          "operation": "create",
+          "description": "Create hook for tracking page views and tool usage, calling backend updateAnalytics on route changes and tool interactions to populate analytics data"
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Integrate usePageTracking hook at root level to automatically track all page views and tool usage for analytics collection"
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Implement comprehensive SEO across the entire site",
+      "acceptanceCriteria": [
+        "Every page has a unique H1 and logical H2 structure",
+        "Every page has unique meta title and meta description containing target keywords",
+        "OG and Twitter Card tags are present on all pages",
+        "sitemap.xml lists all tool pages, blog pages, and legal pages",
+        "robots.txt is correctly configured",
+        "Tool pages include FAQ JSON-LD and BreadcrumbList JSON-LD",
+        "Internal links connect related tools on each tool page"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/seo/SEOHead.tsx",
+          "operation": "create",
+          "description": "Create SEO head component accepting title, description, image, canonical URL, and schema props, rendering meta tags, OG tags, Twitter cards, and JSON-LD using react-helmet-async"
+        },
+        {
+          "path": "frontend/src/utils/seoData.ts",
+          "operation": "create",
+          "description": "Create SEO data file defining unique meta titles, descriptions, keywords, and schema markup for all pages (home, tool pages, legal pages, blog pages) targeting US traffic keywords like 'free online tools', 'image compressor online', 'pdf converter free', 'resize image online free', 'merge pdf online'"
+        },
+        {
+          "path": "frontend/src/components/seo/Breadcrumb.tsx",
+          "operation": "create",
+          "description": "Create breadcrumb navigation component rendering visual breadcrumb trail and BreadcrumbList JSON-LD schema for all pages"
+        },
+        {
+          "path": "frontend/src/components/seo/FAQSection.tsx",
+          "operation": "create",
+          "description": "Create FAQ section component accepting questions/answers array and rendering FAQ markup with FAQPage JSON-LD schema"
+        },
+        {
+          "path": "frontend/src/components/tools/RelatedTools.tsx",
+          "operation": "create",
+          "description": "Create related tools component rendering internal links to related tool pages for SEO and user navigation"
+        },
+        {
+          "path": "frontend/public/sitemap.xml",
+          "operation": "create",
+          "description": "Create sitemap.xml listing all tool pages (/tools/*), legal pages (/about, /contact, /privacy-policy, /disclaimer, /terms), blog pages (/blog, /blog/*), and homepage with proper URLs and lastmod dates"
+        },
+        {
+          "path": "frontend/public/robots.txt",
+          "operation": "create",
+          "description": "Create robots.txt allowing all user agents, referencing sitemap.xml, and following standard crawling guidelines"
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Add SEOHead component to homepage with unique meta tags, OG image using generated og-default.dim_1200x630.png from frontend/public/assets/generated/, WebSite JSON-LD schema, and proper H1/H2 heading hierarchy"
+        },
+        {
+          "path": "frontend/src/components/tools/ImageToolTemplate.tsx",
+          "operation": "modify",
+          "description": "Integrate SEOHead, Breadcrumb, FAQSection, and RelatedTools components into image tool template with tool-specific SEO data and Tool JSON-LD schema"
+        },
+        {
+          "path": "frontend/src/components/tools/PdfToolTemplate.tsx",
+          "operation": "modify",
+          "description": "Integrate SEOHead, Breadcrumb, FAQSection, and RelatedTools components into PDF tool template with tool-specific SEO data and Tool JSON-LD schema"
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Create five AdSense-compliant legal pages with working contact form",
+      "acceptanceCriteria": [
+        "All five legal pages are accessible via clean URLs (/about, /contact, /privacy-policy, /disclaimer, /terms)",
+        "Contact form submits and stores the message in the backend; user sees a success confirmation",
+        "All five pages are linked in the footer",
+        "Each page has its own meta title and description",
+        "Content is professional and covers topics required for AdSense approval"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AboutPage.tsx",
+          "operation": "create",
+          "description": "Create About Us page with professional content about the free tools platform, SEOHead component with unique meta tags, and proper heading structure"
+        },
+        {
+          "path": "frontend/src/pages/ContactPage.tsx",
+          "operation": "create",
+          "description": "Create Contact page with contact form (name, email, message fields), form submission calling backend addContactMessage method, success confirmation display, SEOHead component, and proper heading structure"
+        },
+        {
+          "path": "frontend/src/pages/PrivacyPolicyPage.tsx",
+          "operation": "create",
+          "description": "Create Privacy Policy page with AdSense-compliant privacy policy content covering data collection, cookies, third-party services, SEOHead component, and proper heading structure"
+        },
+        {
+          "path": "frontend/src/pages/DisclaimerPage.tsx",
+          "operation": "create",
+          "description": "Create Disclaimer page with professional disclaimer content covering tool usage, accuracy, liability limitations, SEOHead component, and proper heading structure"
+        },
+        {
+          "path": "frontend/src/pages/TermsPage.tsx",
+          "operation": "create",
+          "description": "Create Terms & Conditions page with professional terms content covering acceptable use, intellectual property, limitation of liability, SEOHead component, and proper heading structure"
+        },
+        {
+          "path": "frontend/src/hooks/useContactForm.ts",
+          "operation": "create",
+          "description": "Create hook for managing contact form state, validation, submission to backend addContactMessage method, and success/error handling"
+        },
+        {
+          "path": "frontend/src/components/layout/Footer.tsx",
+          "operation": "modify",
+          "description": "Add navigation links to all five legal pages (/about, /contact, /privacy-policy, /disclaimer, /terms) in the footer navigation section"
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register routes for all five legal pages (/about, /contact, /privacy-policy, /disclaimer, /terms) in the router configuration"
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Build blog section with SEO-optimized article pages and internal linking",
+      "acceptanceCriteria": [
+        "Blog index at /blog lists all articles with category filters",
+        "Individual article pages use a consistent template with title, meta, OG, JSON-LD Article schema",
+        "At least 3 seed articles exist targeting image/PDF tool keywords",
+        "Each article page links to at least 2 related tools",
+        "Blog categories are navigable and filterable"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/BlogIndexPage.tsx",
+          "operation": "create",
+          "description": "Create blog index page listing all articles fetched from backend getBlogPostsSortedByDate, with category filter tabs, article cards with excerpts, SEOHead component, and proper heading structure"
+        },
+        {
+          "path": "frontend/src/pages/BlogArticlePage.tsx",
+          "operation": "create",
+          "description": "Create blog article page template displaying article title, author, date, content, related tools sidebar with internal links to at least 2 tools, SEOHead component with Article JSON-LD schema, OG tags, and breadcrumb navigation"
+        },
+        {
+          "path": "frontend/src/hooks/useBlogPosts.ts",
+          "operation": "create",
+          "description": "Create hook for fetching blog posts from backend using getBlogPostsSortedByDate and getBlogPostsByCategory methods, managing loading and error states"
+        },
+        {
+          "path": "frontend/src/components/blog/BlogCard.tsx",
+          "operation": "create",
+          "description": "Create blog article card component displaying title, excerpt, date, category, and link to article page with dark gradient styling"
+        },
+        {
+          "path": "frontend/src/components/blog/CategoryFilter.tsx",
+          "operation": "create",
+          "description": "Create category filter component for blog index page with tabs switching between categories and all posts view"
+        },
+        {
+          "path": "frontend/src/utils/seedBlogPosts.ts",
+          "operation": "create",
+          "description": "Create utility file defining at least 3 seed blog posts targeting US keywords related to image and PDF tools (e.g., 'How to Compress Images for Web', 'Best Free PDF Tools Online', 'Image Formats Explained: JPG vs PNG vs WebP'), including title, content, author, date, category, and related tools arrays"
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register routes for blog index (/blog) and individual article pages (/blog/:slug) with dynamic routing based on article slug/ID"
+        },
+        {
+          "path": "frontend/public/sitemap.xml",
+          "operation": "modify",
+          "description": "Add blog index and individual article URLs to sitemap.xml for SEO crawling"
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Apply cohesive dark gradient visual theme consistently across all pages",
+      "acceptanceCriteria": [
+        "All pages use the dark base color palette consistently",
+        "Buttons and key UI elements use the cyan-to-violet gradient",
+        "Hero section is visually prominent with gradient background and clear CTA",
+        "Tool cards have hover glow/highlight effects",
+        "Typography is clean, readable, and consistent across all pages",
+        "Theme is applied to admin panel and all secondary pages"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define global typography styles using clean sans-serif font stack (system or Google Fonts), base font sizes, line heights, and heading styles ensuring readability across all pages"
+        },
+        {
+          "path": "frontend/src/components/ui/Button.tsx",
+          "operation": "create",
+          "description": "Create Button component with cyan-to-violet gradient styling, hover effects, and size/variant props for consistent use across the app"
+        },
+        {
+          "path": "frontend/src/components/ui/Card.tsx",
+          "operation": "create",
+          "description": "Create Card component with dark background, subtle border, hover glow effect, and padding for consistent card-based layouts"
+        },
+        {
+          "path": "frontend/src/pages/admin/AdminDashboardPage.tsx",
+          "operation": "modify",
+          "description": "Apply dark gradient theme styling to admin dashboard using Card components for analytics sections and Button components for actions"
+        },
+        {
+          "path": "frontend/src/pages/admin/AdminLoginPage.tsx",
+          "operation": "modify",
+          "description": "Apply dark gradient theme styling to admin login page using Card component for form container and Button component for submit button"
+        },
+        {
+          "path": "frontend/src/pages/AboutPage.tsx",
+          "operation": "modify",
+          "description": "Apply dark gradient theme styling to About page using consistent typography and Card components for content sections"
+        },
+        {
+          "path": "frontend/src/pages/ContactPage.tsx",
+          "operation": "modify",
+          "description": "Apply dark gradient theme styling to Contact page using Card component for form container and Button component for submit button"
+        },
+        {
+          "path": "frontend/src/pages/PrivacyPolicyPage.tsx",
+          "operation": "modify",
+          "description": "Apply dark gradient theme styling to Privacy Policy page using consistent typography and proper section spacing"
+        },
+        {
+          "path": "frontend/src/pages/DisclaimerPage.tsx",
+          "operation": "modify",
+          "description": "Apply dark gradient theme styling to Disclaimer page using consistent typography and proper section spacing"
+        },
+        {
+          "path": "frontend/src/pages/TermsPage.tsx",
+          "operation": "modify",
+          "description": "Apply dark gradient theme styling to Terms page using consistent typography and proper section spacing"
+        },
+        {
+          "path": "frontend/src/pages/BlogIndexPage.tsx",
+          "operation": "modify",
+          "description": "Apply dark gradient theme styling to blog index page using Card components for blog cards and consistent gradient accents"
+        },
+        {
+          "path": "frontend/src/pages/BlogArticlePage.tsx",
+          "operation": "modify",
+          "description": "Apply dark gradient theme styling to blog article page using Card components for content and sidebar with consistent typography"
+        }
+      ]
+    }
+  ]
+}

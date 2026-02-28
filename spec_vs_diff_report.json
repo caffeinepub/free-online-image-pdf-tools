@@ -1,0 +1,144 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-28T03:49:29.838Z",
+  "summary": "The diff implements a substantial portion of the requested build, including the Motoko backend, frontend routing, ad placeholders, SEO components, tool templates, admin auth context, and multiple tool/page files. However, due to truncation, 61 added files are omitted from the diff summary, making it impossible to verify full implementation of all tools, blog posts, legal pages, admin dashboard, sitemap.xml, robots.txt, and analytics charts. Based on what is visible, several specific acceptance criteria cannot be confirmed and some appear missing or only partially implemented.",
+  "missing_requirements": [
+    {
+      "requirement": "sitemap.xml listing all tool pages, blog pages, and legal pages",
+      "reason": "No sitemap.xml file is present in the diff. This is a static file that should appear in the added files list.",
+      "evidence": []
+    },
+    {
+      "requirement": "robots.txt correctly configured",
+      "reason": "No robots.txt file is present in the diff.",
+      "evidence": []
+    },
+    {
+      "requirement": "Admin dashboard must display a simple bar/line chart visualizing daily visitor or tool usage trends",
+      "reason": "No chart library import or chart component is visible in any shown file. The admin dashboard files are among the 61 omitted files, but no chart-related code is referenced anywhere visible.",
+      "evidence": []
+    },
+    {
+      "requirement": "Backend stores and retrieves total visitors all-time, daily visitors, page views, and tool usage data for the admin dashboard",
+      "reason": "The backend main.mo only implements updateAnalytics (increments per date) and getDailyAnalytics (get by date). There is no getTotalVisitors, getAllAnalytics, or getPageViews function exposed.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "requirement": "Ad click simulation counter displayed on the admin dashboard and tracked in the backend",
+      "reason": "No ad click tracking function exists in backend/main.mo, and no trackAdClick or similar function is visible in any frontend file.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "requirement": "At least 3 seed blog posts targeting US keywords relevant to image and PDF tools",
+      "reason": "Blog post seeding is not visible in any shown file. The backend addBlogPost function exists but no seed data or initialization is visible anywhere in the diff.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "requirement": "Required image assets: hero-bg.dim_1920x600.png, logo-icon.dim_128x128.png, og-default.dim_1200x630.png",
+      "reason": "No image asset files are present in the diff. The SEOHead.tsx references the og-default image path but the actual file is not in the added files.",
+      "evidence": [
+        "frontend/src/components/seo/SEOHead.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "BlogPost sorting by date implemented as a backend Motoko function (getBlogPostsSortedByDate)",
+      "reason": "The build request does not specify blog post sorting as a backend concern. Only contact messages and analytics were called out for backend storage. Blog content management and sorting were not requested in the Motoko backend.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "confidence": 0.45,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/ads/AdBanner.tsx",
+    "frontend/src/components/ads/PopupAd.tsx",
+    "frontend/src/components/ads/StickyBottomAd.tsx",
+    "frontend/src/components/layout/Footer.tsx",
+    "frontend/src/components/layout/Header.tsx",
+    "frontend/src/components/seo/Breadcrumb.tsx",
+    "frontend/src/components/seo/FAQSection.tsx",
+    "frontend/src/components/seo/SEOHead.tsx",
+    "frontend/src/components/tools/ImageToolTemplate.tsx",
+    "frontend/src/components/tools/MultiFileUploadZone.tsx",
+    "frontend/src/components/tools/PdfToolTemplate.tsx",
+    "frontend/src/components/tools/RelatedTools.tsx",
+    "frontend/src/components/tools/ToolUploadZone.tsx",
+    "frontend/src/contexts/AuthContext.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useBackgroundRemoval.ts",
+    "frontend/src/hooks/useContactForm.ts",
+    "frontend/src/hooks/useImageCompression.ts",
+    "frontend/src/hooks/useImageConversion.ts",
+    "frontend/src/hooks/useImageCrop.ts",
+    "frontend/src/hooks/useImageMetadata.ts",
+    "frontend/src/hooks/useImageResize.ts",
+    "frontend/src/hooks/useImageRotation.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useJpgToPdf.ts",
+    "frontend/src/hooks/usePageTracking.ts",
+    "frontend/src/hooks/usePdfCompression.ts",
+    "frontend/src/hooks/usePdfLock.ts",
+    "frontend/src/hooks/usePdfMerge.ts",
+    "frontend/src/hooks/usePdfPageNumbers.ts",
+    "frontend/src/hooks/usePdfSplit.ts",
+    "frontend/src/hooks/usePdfToJpg.ts",
+    "frontend/src/hooks/usePdfToWord.ts",
+    "frontend/src/hooks/usePdfUnlock.ts",
+    "frontend/src/hooks/usePdfWatermark.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/hooks/useWordToPdf.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/AboutPage.tsx",
+    "frontend/src/pages/BlogArticlePage.tsx",
+    "frontend/src/pages/BlogIndexPage.tsx",
+    "frontend/src/pages/ContactPage.tsx",
+    "frontend/src/pages/DisclaimerPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/PrivacyPolicyPage.tsx",
+    "frontend/src/pages/TermsPage.tsx",
+    "frontend/src/pages/admin/AdminDashboardPage.tsx",
+    "frontend/src/pages/admin/AdminLoginPage.tsx",
+    "frontend/src/pages/tools/BackgroundRemoverPage.tsx",
+    "frontend/src/pages/tools/ImageCompressorPage.tsx",
+    "frontend/src/pages/tools/ImageCropperPage.tsx",
+    "frontend/src/pages/tools/ImageMetadataViewerPage.tsx",
+    "frontend/src/pages/tools/ImageResizerPage.tsx",
+    "frontend/src/pages/tools/ImageRotatorPage.tsx",
+    "frontend/src/pages/tools/ImageToWebpPage.tsx",
+    "frontend/src/pages/tools/JpgToPdfPage.tsx",
+    "frontend/src/pages/tools/JpgToPngPage.tsx",
+    "frontend/src/pages/tools/PdfCompressorPage.tsx",
+    "frontend/src/pages/tools/PdfLockPage.tsx",
+    "frontend/src/pages/tools/PdfMergePage.tsx",
+    "frontend/src/pages/tools/PdfPageNumbersPage.tsx",
+    "frontend/src/pages/tools/PdfSplitPage.tsx",
+    "frontend/src/pages/tools/PdfToJpgPage.tsx",
+    "frontend/src/pages/tools/PdfToWordPage.tsx",
+    "frontend/src/pages/tools/PdfUnlockPage.tsx",
+    "frontend/src/pages/tools/PdfWatermarkPage.tsx",
+    "frontend/src/pages/tools/PngToJpgPage.tsx",
+    "frontend/src/pages/tools/WebpToJpgPage.tsx",
+    "frontend/src/pages/tools/WordToPdfPage.tsx",
+    "frontend/src/utils/seedBlogPosts.ts",
+    "frontend/src/utils/seoData.ts",
+    "frontend/src/utils/toolsData.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "frontend/src/App.tsx": "Main app with TanStack Router, lazy-loaded routes for all 21 tool pages, legal pages, blog, and admin panel, wrapped in AuthProvider with Layout component.",
+  "frontend/src/hooks/useWordToPdf.ts": "Hook that converts plain text to a valid PDF using raw PDF syntax built from scratch; fixes Uint8Array Blob type error by casting `.buffer as ArrayBuffer`.",
+  "frontend/src/hooks/usePdfMerge.ts": "Hook for PDF merging that reads file bytes and passes through the first PDF as a placeholder; fixes Uint8Array Blob type error by casting `.buffer as ArrayBuffer`.",
+  "frontend/src/hooks/useJpgToPdf.ts": "Hook that converts multiple images to a PDF by building raw PDF structure with embedded JPEG XObjects; fixes Uint8Array Blob type error by casting `.buffer as ArrayBuffer`.",
+  "frontend/src/pages/tools/PdfSplitPage.tsx": "PDF Split tool page using PdfToolTemplate with file upload, page range input, and download links for split results.",
+  "frontend/src/pages/tools/PdfCompressorPage.tsx": "PDF Compressor tool page using PdfToolTemplate with file upload, size comparison display, and download button.",
+  "frontend/src/pages/tools/PdfLockPage.tsx": "PDF Lock tool page using PdfToolTemplate with file upload, password input with show/hide toggle, and download button.",
+  "frontend/src/pages/tools/PdfUnlockPage.tsx": "PDF Unlock tool page using PdfToolTemplate with file upload, optional password input, and download button.",
+  "frontend/src/pages/tools/PdfWatermarkPage.tsx": "PDF Watermark tool page using PdfToolTemplate with text, opacity, font size, and position controls.",
+  "frontend/src/pages/tools/PdfPageNumbersPage.tsx": "PDF Page Numbers tool page using PdfToolTemplate with position and starting number controls.",
+  "frontend/src/pages/tools/PdfToJpgPage.tsx": "PDF to JPG tool page using PdfToolTemplate with progress bar and grid of downloadable page images.",
+  "frontend/src/pages/tools/JpgToPdfPage.tsx": "JPG to PDF tool page using PdfToolTemplate with multi-file upload and single PDF download.",
+  "frontend/src/pages/AboutPage.tsx": "About Us page with company story, feature highlights, and stats grid, fully SEO-optimized with dark gradient theme.",
+  "frontend/src/pages/ContactPage.tsx": "Contact page with a working form that submits to the backend via useContactForm hook, with success confirmation state.",
+  "frontend/src/pages/PrivacyPolicyPage.tsx": "AdSense-compliant Privacy Policy page covering data collection, cookies, Google AdSense, and third-party services.",
+  "frontend/src/pages/DisclaimerPage.tsx": "Disclaimer page covering tool accuracy, PDF limitations, liability, and indemnification in professional legal language.",
+  "frontend/src/pages/TermsPage.tsx": "Terms & Conditions page covering acceptable use, intellectual property, advertising, warranties, and liability limitations.",
+  "frontend/src/pages/BlogIndexPage.tsx": "Blog index page with category filter tabs and article cards grid; fixes the TanStack Router type error by using `to=\"/blog/$slug\"` with `params={{ slug: post.slug }}` instead of a template literal.",
+  "frontend/src/pages/BlogArticlePage.tsx": "Blog article page with dynamic slug routing, markdown-like content rendering, related tools sidebar, and Article JSON-LD schema.",
+  "frontend/src/pages/admin/AdminLoginPage.tsx": "Admin login page with username/password form, session auth via AuthContext, and redirect to dashboard on success.",
+  "frontend/src/pages/admin/AdminDashboardPage.tsx": "Admin dashboard with stats cards, 7-day visitor bar chart via Recharts, top tools ranking, and full tool usage table from backend analytics."
+}
