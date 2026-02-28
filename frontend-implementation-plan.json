@@ -1,45 +1,27 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Set admin credentials to AnuragSingh/Anurag@123 and add password change settings in admin dashboard",
+  "title": "Add Change Password to Admin Settings",
   "requirements": [
     {
-      "id": "REQ-10",
-      "summary": "Update hardcoded admin credentials in AuthContext to username 'AnuragSingh' and password 'Anurag@123'",
+      "id": "REQ-12",
+      "summary": "Add a 'Change Password' form to the admin dashboard Settings section that validates the current password, accepts new password input, updates AuthContext state and sessionStorage on successful submission, and displays appropriate success or error messages styled with the dark gradient admin theme",
       "acceptanceCriteria": [
-        "Logging in at /admin/login with username 'AnuragSingh' and password 'Anurag@123' succeeds and redirects to /admin dashboard.",
-        "Logging in with any other username/password combination fails with an error message.",
-        "The AuthContext default credentials are set to username='AnuragSingh' and password='Anurag@123'."
+        "A 'Change Password' form is visible in the admin dashboard Settings section.",
+        "The form has three fields: Current Password, New Password, and Confirm New Password.",
+        "Submitting with the wrong current password shows an error message.",
+        "Submitting with mismatched new password and confirm new password shows an error message.",
+        "Submitting with all empty fields shows a validation error.",
+        "On a valid submission, the password is updated in AuthContext state and sessionStorage.",
+        "A success message is displayed after a successful password change.",
+        "The admin can log out and log back in using the new password.",
+        "The form and messages are styled consistently with the existing dark gradient admin theme."
       ],
       "file_operations": [
-        {
-          "path": "frontend/src/contexts/AuthContext.tsx",
-          "operation": "modify",
-          "description": "Update the hardcoded credentials object to set username to 'AnuragSingh' and password to 'Anurag@123'. Modify the default credentials used in the login validation logic to match these exact values. Ensure sessionStorage persists these credentials correctly after successful login."
-        }
-      ]
-    },
-    {
-      "id": "REQ-11",
-      "summary": "Add Settings section to admin dashboard allowing the admin to change username and password with validation",
-      "acceptanceCriteria": [
-        "A 'Settings' tab or section is visible in the admin dashboard after login.",
-        "The settings form contains fields: new username, current password, new password, confirm new password.",
-        "Submitting with a wrong current password shows a clear error message and does not update credentials.",
-        "Submitting with mismatched new password and confirm password shows a validation error.",
-        "On successful save, the updated username and password are applied immediately — logging out and logging in again with the new credentials works.",
-        "A success notification is displayed after credentials are successfully changed."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/contexts/AuthContext.tsx",
-          "operation": "modify",
-          "description": "Add a `changeCredentials` function to the AuthContext that accepts newUsername, currentPassword, newPassword parameters. Implement validation logic to verify the currentPassword matches the stored password before updating. Update the credentials in both the context state and sessionStorage. Return success/error status from this function to support UI feedback."
-        },
         {
           "path": "frontend/src/pages/admin/AdminDashboardPage.tsx",
           "operation": "modify",
-          "description": "Add a new Settings section or tab to the admin dashboard UI. Create a settings form with controlled input fields for: new username (text), current password (password with show/hide toggle), new password (password with show/hide toggle), and confirm new password (password with show/hide toggle). Implement form validation to check that new password and confirm password match. Call the AuthContext changeCredentials function on form submission. Display success toast/alert on successful credential update and error messages for validation failures or incorrect current password. Use shadcn/ui components (Input, Button, Label, Card, Alert) for consistent styling."
+          "description": "Add a 'Change Password' subsection within the existing Settings tab. The subsection will include three controlled input fields (Current Password, New Password, Confirm New Password) with type='password', all styled consistently with the dark gradient admin theme. Implement form validation to check that all fields are filled, that the current password matches the stored credentials from AuthContext, and that the new password and confirm password fields match. On submit, if validation passes, call the changePassword method from AuthContext to update both the in-memory state and sessionStorage. Display a success message on successful update or a descriptive error message on validation failure (e.g., 'Current password is incorrect', 'New passwords do not match', 'All fields are required'). Ensure the form uses the same card styling, input styling, and button styling as the existing 'Change Username' form in the Settings section."
         }
       ]
     }

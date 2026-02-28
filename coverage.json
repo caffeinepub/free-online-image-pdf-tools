@@ -1,36 +1,23 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-28T04:03:32.910Z",
+  "generatedAt": "2026-02-28T04:10:12.504Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 1,
+    "implemented": 1,
     "items": [
       {
-        "id": "REQ-10",
-        "summary": "Update the hardcoded admin credentials in `frontend/src/contexts/AuthContext.tsx` so that the default username is `AnuragSingh` and the default password is `Anurag@123`. These must be the credentials accepted on the `/admin/login` page.",
+        "id": "REQ-12",
+        "summary": "In the Settings section of the admin dashboard (`frontend/src/pages/admin/AdminDashboardPage.tsx`), add a dedicated 'Change Password' subsection with fields for: current password (for verification), new password, and confirm new password. On submit, verify the current password against the active credentials stored in AuthContext, then if valid and new passwords match, update the password in AuthContext state and sessionStorage so it persists for the session. Display a clear success message on save or a descriptive error message on failure (wrong current password, password mismatch, or empty fields). The form must be styled consistently with the existing dark gradient admin theme.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/contexts/AuthContext.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/contexts/AuthContext.tsx"
-        ]
-      },
-      {
-        "id": "REQ-11",
-        "summary": "Add a Settings section to the admin dashboard (`frontend/src/pages/admin/AdminDashboardPage.tsx`) that allows the logged-in admin to change their username and password. The settings form must have fields for: new username, current password (for verification), new password, and confirm new password. On successful save, the new credentials must replace the current ones in AuthContext state (and sessionStorage so they persist for the session). Display a success or error message after the attempt.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/contexts/AuthContext.tsx",
           "frontend/src/pages/admin/AdminDashboardPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/contexts/AuthContext.tsx",
           "frontend/src/pages/admin/AdminDashboardPage.tsx"
         ]
       }
@@ -38,13 +25,11 @@
   },
   "changedFiles": [
     "build-request.json",
-    "build-template/README.md",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
     "frontend/src/contexts/AuthContext.tsx",
     "frontend/src/pages/admin/AdminDashboardPage.tsx",
-    "frontend/src/pages/admin/AdminLoginPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

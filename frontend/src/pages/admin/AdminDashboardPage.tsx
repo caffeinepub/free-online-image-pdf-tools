@@ -6,13 +6,14 @@ import { SEOHead } from '@/components/seo/SEOHead';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import {
   Users, Eye, EyeOff, Zap, TrendingUp, LogOut, BarChart2,
-  MousePointer, Settings, CheckCircle, AlertCircle,
+  MousePointer, Settings, CheckCircle, AlertCircle, KeyRound, UserCog,
 } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 
 // ─── Stat Card ────────────────────────────────────────────────────────────────
 
@@ -39,12 +40,128 @@ function StatCard({
   );
 }
 
-// ─── Settings Tab ─────────────────────────────────────────────────────────────
+// ─── Change Username Card ─────────────────────────────────────────────────────
 
-function SettingsTab() {
+function ChangeUsernameCard() {
   const { changeCredentials, currentUsername } = useAuth();
 
   const [newUsername, setNewUsername] = useState(currentUsername);
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [showCurrentPw, setShowCurrentPw] = useState(false);
+  const [successMsg, setSuccessMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSuccessMsg('');
+    setErrorMsg('');
+
+    if (!newUsername.trim() || !currentPassword) {
+      setErrorMsg('All fields are required.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    await new Promise(r => setTimeout(r, 400));
+
+    // Keep the same password, only change username
+    const creds = sessionStorage.getItem('admin_credentials');
+    const parsed = creds ? JSON.parse(creds) : { password: 'Anurag@123' };
+    const result = changeCredentials(newUsername, currentPassword, parsed.password);
+
+    if (result.success) {
+      setSuccessMsg('Username updated successfully!');
+      setCurrentPassword('');
+    } else {
+      setErrorMsg(result.error ?? 'Failed to update username.');
+    }
+    setIsSubmitting(false);
+  };
+
+  return (
+    <Card className="border-border">
+      <CardHeader>
+        <CardTitle className="font-display text-lg flex items-center gap-2">
+          <UserCog size={18} className="text-primary" />
+          Change Username
+        </CardTitle>
+        <CardDescription>
+          Update your admin username. Your current password is required to confirm the change.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="new-username">New Username</Label>
+            <Input
+              id="new-username"
+              value={newUsername}
+              onChange={e => setNewUsername(e.target.value)}
+              placeholder="Enter new username"
+              autoComplete="off"
+              required
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="username-current-password">Current Password</Label>
+            <div className="relative">
+              <Input
+                id="username-current-password"
+                type={showCurrentPw ? 'text' : 'password'}
+                value={currentPassword}
+                onChange={e => setCurrentPassword(e.target.value)}
+                placeholder="••••••••"
+                autoComplete="current-password"
+                required
+                className="pr-10"
+              />
+              <button
+                type="button"
+                onClick={() => setShowCurrentPw(v => !v)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+              >
+                {showCurrentPw ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
+            </div>
+          </div>
+
+          {errorMsg && (
+            <div className="flex items-start gap-2 p-3 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive text-sm">
+              <AlertCircle size={15} className="mt-0.5 shrink-0" />
+              <span>{errorMsg}</span>
+            </div>
+          )}
+
+          {successMsg && (
+            <div className="flex items-start gap-2 p-3 bg-green-500/10 border border-green-500/20 rounded-lg text-green-600 dark:text-green-400 text-sm">
+              <CheckCircle size={15} className="mt-0.5 shrink-0" />
+              <span>{successMsg}</span>
+            </div>
+          )}
+
+          <Button type="submit" disabled={isSubmitting} className="w-full">
+            {isSubmitting ? (
+              <span className="flex items-center gap-2">
+                <span className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin" />
+                Saving...
+              </span>
+            ) : (
+              'Update Username'
+            )}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}
+
+// ─── Change Password Card ─────────────────────────────────────────────────────
+
+function ChangePasswordCard() {
+  const { changePassword } = useAuth();
+
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -62,10 +179,16 @@ function SettingsTab() {
     setSuccessMsg('');
     setErrorMsg('');
 
-    if (newPassword !== confirmPassword) {
-      setErrorMsg('New password and confirm password do not match.');
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      setErrorMsg('All fields are required.');
       return;
     }
+
+    if (newPassword !== confirmPassword) {
+      setErrorMsg('New passwords do not match.');
+      return;
+    }
+
     if (newPassword.length < 6) {
       setErrorMsg('New password must be at least 6 characters.');
       return;
@@ -74,152 +197,145 @@ function SettingsTab() {
     setIsSubmitting(true);
     await new Promise(r => setTimeout(r, 400));
 
-    const result = changeCredentials(newUsername, currentPassword, newPassword);
+    const result = changePassword(currentPassword, newPassword);
+
     if (result.success) {
-      setSuccessMsg('Credentials updated successfully! Use your new credentials next time you log in.');
+      setSuccessMsg('Password updated successfully! Use your new password next time you log in.');
       setCurrentPassword('');
       setNewPassword('');
       setConfirmPassword('');
     } else {
-      setErrorMsg(result.error ?? 'Failed to update credentials.');
+      setErrorMsg(result.error ?? 'Failed to update password.');
     }
     setIsSubmitting(false);
   };
 
   return (
-    <div className="max-w-lg">
-      <Card className="border-border">
-        <CardHeader>
-          <CardTitle className="font-display text-lg flex items-center gap-2">
-            <Settings size={18} className="text-primary" />
-            Change Admin Credentials
-          </CardTitle>
-          <CardDescription>
-            Update your admin username and password. You'll need your current password to make changes.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* New Username */}
-            <div className="space-y-2">
-              <Label htmlFor="new-username">New Username</Label>
+    <Card className="border-border">
+      <CardHeader>
+        <CardTitle className="font-display text-lg flex items-center gap-2">
+          <KeyRound size={18} className="text-primary" />
+          Change Password
+        </CardTitle>
+        <CardDescription>
+          Update your admin password. You'll need your current password to make changes.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Current Password */}
+          <div className="space-y-2">
+            <Label htmlFor="pw-current">Current Password</Label>
+            <div className="relative">
               <Input
-                id="new-username"
-                value={newUsername}
-                onChange={e => setNewUsername(e.target.value)}
-                placeholder="Enter new username"
-                autoComplete="off"
+                id="pw-current"
+                type={showCurrentPw ? 'text' : 'password'}
+                value={currentPassword}
+                onChange={e => setCurrentPassword(e.target.value)}
+                placeholder="••••••••"
+                autoComplete="current-password"
                 required
+                className="pr-10"
               />
+              <button
+                type="button"
+                onClick={() => setShowCurrentPw(v => !v)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+              >
+                {showCurrentPw ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
             </div>
+          </div>
 
-            {/* Current Password */}
-            <div className="space-y-2">
-              <Label htmlFor="current-password">Current Password</Label>
-              <div className="relative">
-                <Input
-                  id="current-password"
-                  type={showCurrentPw ? 'text' : 'password'}
-                  value={currentPassword}
-                  onChange={e => setCurrentPassword(e.target.value)}
-                  placeholder="••••••••"
-                  autoComplete="current-password"
-                  required
-                  className="pr-10"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowCurrentPw(v => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                >
-                  {showCurrentPw ? <EyeOff size={16} /> : <Eye size={16} />}
-                </button>
-              </div>
+          {/* New Password */}
+          <div className="space-y-2">
+            <Label htmlFor="pw-new">New Password</Label>
+            <div className="relative">
+              <Input
+                id="pw-new"
+                type={showNewPw ? 'text' : 'password'}
+                value={newPassword}
+                onChange={e => setNewPassword(e.target.value)}
+                placeholder="Min. 6 characters"
+                autoComplete="new-password"
+                required
+                className="pr-10"
+              />
+              <button
+                type="button"
+                onClick={() => setShowNewPw(v => !v)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+              >
+                {showNewPw ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
             </div>
+          </div>
 
-            {/* New Password */}
-            <div className="space-y-2">
-              <Label htmlFor="new-password">New Password</Label>
-              <div className="relative">
-                <Input
-                  id="new-password"
-                  type={showNewPw ? 'text' : 'password'}
-                  value={newPassword}
-                  onChange={e => setNewPassword(e.target.value)}
-                  placeholder="Min. 6 characters"
-                  autoComplete="new-password"
-                  required
-                  className="pr-10"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowNewPw(v => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                >
-                  {showNewPw ? <EyeOff size={16} /> : <Eye size={16} />}
-                </button>
-              </div>
+          {/* Confirm New Password */}
+          <div className="space-y-2">
+            <Label htmlFor="pw-confirm">Confirm New Password</Label>
+            <div className="relative">
+              <Input
+                id="pw-confirm"
+                type={showConfirmPw ? 'text' : 'password'}
+                value={confirmPassword}
+                onChange={e => setConfirmPassword(e.target.value)}
+                placeholder="Re-enter new password"
+                autoComplete="new-password"
+                required
+                className="pr-10"
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPw(v => !v)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+              >
+                {showConfirmPw ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
             </div>
+          </div>
 
-            {/* Confirm New Password */}
-            <div className="space-y-2">
-              <Label htmlFor="confirm-password">Confirm New Password</Label>
-              <div className="relative">
-                <Input
-                  id="confirm-password"
-                  type={showConfirmPw ? 'text' : 'password'}
-                  value={confirmPassword}
-                  onChange={e => setConfirmPassword(e.target.value)}
-                  placeholder="Re-enter new password"
-                  autoComplete="new-password"
-                  required
-                  className="pr-10"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPw(v => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                >
-                  {showConfirmPw ? <EyeOff size={16} /> : <Eye size={16} />}
-                </button>
-              </div>
+          {/* Error */}
+          {errorMsg && (
+            <div className="flex items-start gap-2 p-3 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive text-sm">
+              <AlertCircle size={15} className="mt-0.5 shrink-0" />
+              <span>{errorMsg}</span>
             </div>
+          )}
 
-            {/* Error */}
-            {errorMsg && (
-              <div className="flex items-start gap-2 p-3 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive text-sm">
-                <AlertCircle size={15} className="mt-0.5 shrink-0" />
-                <span>{errorMsg}</span>
-              </div>
+          {/* Success */}
+          {successMsg && (
+            <div className="flex items-start gap-2 p-3 bg-green-500/10 border border-green-500/20 rounded-lg text-green-600 dark:text-green-400 text-sm">
+              <CheckCircle size={15} className="mt-0.5 shrink-0" />
+              <span>{successMsg}</span>
+            </div>
+          )}
+
+          <Button type="submit" disabled={isSubmitting} className="w-full">
+            {isSubmitting ? (
+              <span className="flex items-center gap-2">
+                <span className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin" />
+                Saving...
+              </span>
+            ) : (
+              'Update Password'
             )}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}
 
-            {/* Success */}
-            {successMsg && (
-              <div className="flex items-start gap-2 p-3 bg-green-500/10 border border-green-500/20 rounded-lg text-green-600 dark:text-green-400 text-sm">
-                <CheckCircle size={15} className="mt-0.5 shrink-0" />
-                <span>{successMsg}</span>
-              </div>
-            )}
+// ─── Settings Tab ─────────────────────────────────────────────────────────────
 
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full"
-            >
-              {isSubmitting ? (
-                <span className="flex items-center gap-2">
-                  <span className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin" />
-                  Saving...
-                </span>
-              ) : (
-                'Save Changes'
-              )}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
-
-      <p className="text-xs text-muted-foreground mt-4 px-1">
+function SettingsTab() {
+  return (
+    <div className="space-y-6 max-w-lg">
+      <ChangeUsernameCard />
+      <Separator />
+      <ChangePasswordCard />
+      <p className="text-xs text-muted-foreground px-1">
         <strong>Note:</strong> Credentials are stored in your browser session. They will reset to defaults if you clear your browser data or open a new tab.
       </p>
     </div>

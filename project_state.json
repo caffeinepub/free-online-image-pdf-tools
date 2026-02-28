@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
+  "projectStateVersion": 7,
   "summary": "Production-ready 'Free Online Image & PDF Tools' website with 20+ working tools, AdSense monetization, admin panel, full SEO optimization, legal pages, blog section, and Node.js/Express or Next.js backend. Footer credits: 'Created by Anurag Singh'.",
   "architectural_notes": [
     "Tech stack: Node.js + Express OR Next.js; production-ready, scalable to 100k+ daily visitors",
@@ -98,6 +98,14 @@
       "title": "Add a Settings section to the admin dashboard (`frontend/src/pages/admin/AdminDashboardPage.tsx`) that allows the logged-in admin to change their username and password. The settings form must have fields for: new username, current password (for verification), new password, and confirm new password. On successful save, the new credentials must replace the current ones in AuthContext state (and sessionStorage so they persist for the session). Display a success or error message after the attempt.",
       "reqIds": [
         "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-the-settings-section-of-the-admin-dashboard-frontend-src-pages-admin-admindashboardpage-tsx-add-a-dedicated-change-password-subsection-with-fields-for-current-password-for-verification-new-password-and-confirm-new-password-on-submit-verify-the-current-password-against-the-active-credentials-stored-in-authcontext-then-if-valid-and-new-passwords-match-update-the-password-in-authcontext-state-and-sessionstorage-so-it-persists-for-the-session-display-a-clear-success-message-on-save-or-a-descriptive-error-message-on-failure-wrong-current-password-password-mismatch-or-empty-fields-the-form-must-be-styled-consistently-with-the-existing-dark-gradient-admin-theme",
+      "title": "In the Settings section of the admin dashboard (`frontend/src/pages/admin/AdminDashboardPage.tsx`), add a dedicated 'Change Password' subsection with fields for: current password (for verification), new password, and confirm new password. On submit, verify the current password against the active credentials stored in AuthContext, then if valid and new passwords match, update the password in AuthContext state and sessionStorage so it persists for the session. Display a clear success message on save or a descriptive error message on failure (wrong current password, password mismatch, or empty fields). The form must be styled consistently with the existing dark gradient admin theme.",
+      "reqIds": [
+        "REQ-12"
       ],
       "version": 1
     }

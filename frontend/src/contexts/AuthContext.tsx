@@ -10,6 +10,7 @@ interface AuthContextType {
   login: (username: string, password: string) => boolean;
   logout: () => void;
   changeCredentials: (newUsername: string, currentPassword: string, newPassword: string) => { success: boolean; error?: string };
+  changePassword: (currentPassword: string, newPassword: string) => { success: boolean; error?: string };
   currentUsername: string;
 }
 
@@ -75,6 +76,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     []
   );
 
+  const changePassword = useCallback(
+    (currentPassword: string, newPassword: string): { success: boolean; error?: string } => {
+      const creds = loadCredentials();
+      if (!currentPassword || !newPassword) {
+        return { success: false, error: 'All fields are required.' };
+      }
+      if (currentPassword !== creds.password) {
+        return { success: false, error: 'Current password is incorrect.' };
+      }
+      if (newPassword.length < 6) {
+        return { success: false, error: 'New password must be at least 6 characters.' };
+      }
+      const updated: Credentials = { username: creds.username, password: newPassword };
+      sessionStorage.setItem(STORAGE_KEY_CREDS, JSON.stringify(updated));
+      setCredentials(updated);
+      return { success: true };
+    },
+    []
+  );
+
   return (
     <AuthContext.Provider
       value={{
@@ -82,6 +103,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         login,
         logout,
         changeCredentials,
+        changePassword,
         currentUsername: credentials.username,
       }}
     >

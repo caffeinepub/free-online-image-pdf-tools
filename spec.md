@@ -1,12 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Update the admin login credentials and add a Settings section in the admin dashboard to allow credential changes.
+**Goal:** Add a "Change Password" form to the Settings section of the admin dashboard.
 
 **Planned changes:**
-- Update hardcoded admin credentials in `AuthContext` to username `AnuragSingh` and password `Anurag@123`
-- Add a Settings tab/section to the admin dashboard with a form containing fields for new username, current password, new password, and confirm new password
-- On successful submission, update credentials in AuthContext state and sessionStorage for the current session
-- Show clear success or error messages for validation failures (wrong current password, mismatched new passwords) and successful saves
+- Add a "Change Password" subsection inside the existing Settings section of `AdminDashboardPage.tsx` with three fields: Current Password, New Password, and Confirm New Password.
+- On submit, validate that fields are not empty, verify the current password against AuthContext credentials, and check that new password and confirm new password match.
+- If valid, update the password in AuthContext state and sessionStorage.
+- Display a success message on successful update, or a descriptive error message for wrong current password, mismatched passwords, or empty fields.
+- Style the form and messages consistently with the existing dark gradient admin theme.
 
-**User-visible outcome:** The admin can log in at `/admin/login` with the new credentials (`AnuragSingh` / `Anurag@123`), and from the dashboard Settings section can change their username and password for the current session.
+**User-visible outcome:** Admins can change their password from the Settings section of the dashboard. The new password is immediately active for the current session and persists so the admin can log out and log back in using the updated credentials.

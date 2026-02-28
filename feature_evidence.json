@@ -2,28 +2,9 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-hardcoded-admin-credentials-in-frontend-src-contexts-authcontext-tsx-so-that-the-default-username-is-anuragsingh-and-the-default-password-is-anurag-123-these-must-be-the-credentials-accepted-on-the-admin-login-page",
-      "featureTitle": "Update the hardcoded admin credentials in `frontend/src/contexts/AuthContext.tsx` so that the default username is `AnuragSingh` and the default password is `Anurag@123`. These must be the credentials accepted on the `/admin/login` page.",
+      "featureId": "feature-in-the-settings-section-of-the-admin-dashboard-frontend-src-pages-admin-admindashboardpage-tsx-add-a-dedicated-change-password-subsection-with-fields-for-current-password-for-verification-new-password-and-confirm-new-password-on-submit-verify-the-current-password-against-the-active-credentials-stored-in-authcontext-then-if-valid-and-new-passwords-match-update-the-password-in-authcontext-state-and-sessionstorage-so-it-persists-for-the-session-display-a-clear-success-message-on-save-or-a-descriptive-error-message-on-failure-wrong-current-password-password-mismatch-or-empty-fields-the-form-must-be-styled-consistently-with-the-existing-dark-gradient-admin-theme",
+      "featureTitle": "In the Settings section of the admin dashboard (`frontend/src/pages/admin/AdminDashboardPage.tsx`), add a dedicated 'Change Password' subsection with fields for: current password (for verification), new password, and confirm new password. On submit, verify the current password against the active credentials stored in AuthContext, then if valid and new passwords match, update the password in AuthContext state and sessionStorage so it persists for the session. Display a clear success message on save or a descriptive error message on failure (wrong current password, password mismatch, or empty fields). The form must be styled consistently with the existing dark gradient admin theme.",
       "files": [
-        "frontend/src/contexts/AuthContext.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-10"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-settings-section-to-the-admin-dashboard-frontend-src-pages-admin-admindashboardpage-tsx-that-allows-the-logged-in-admin-to-change-their-username-and-password-the-settings-form-must-have-fields-for-new-username-current-password-for-verification-new-password-and-confirm-new-password-on-successful-save-the-new-credentials-must-replace-the-current-ones-in-authcontext-state-and-sessionstorage-so-they-persist-for-the-session-display-a-success-or-error-message-after-the-attempt",
-      "featureTitle": "Add a Settings section to the admin dashboard (`frontend/src/pages/admin/AdminDashboardPage.tsx`) that allows the logged-in admin to change their username and password. The settings form must have fields for: new username, current password (for verification), new password, and confirm new password. On successful save, the new credentials must replace the current ones in AuthContext state (and sessionStorage so they persist for the session). Display a success or error message after the attempt.",
-      "files": [
-        "frontend/src/contexts/AuthContext.tsx",
         "frontend/src/pages/admin/AdminDashboardPage.tsx"
       ],
       "components": [
@@ -34,7 +15,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-11"
+        "REQ-12"
       ],
       "confidence": "high"
     }

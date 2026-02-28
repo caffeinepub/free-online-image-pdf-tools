@@ -1,58 +1,43 @@
 {
   "kind": "build_request",
-  "title": "Set admin credentials to AnuragSingh/Anurag@123 and add password change settings in admin dashboard",
-  "projectName": "Free Online Tools",
+  "title": "Add Change Password to Admin Settings",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-10",
-      "text": "Update the hardcoded admin credentials in `frontend/src/contexts/AuthContext.tsx` so that the default username is `AnuragSingh` and the default password is `Anurag@123`. These must be the credentials accepted on the `/admin/login` page.",
+      "id": "REQ-12",
+      "text": "In the Settings section of the admin dashboard (`frontend/src/pages/admin/AdminDashboardPage.tsx`), add a dedicated 'Change Password' subsection with fields for: current password (for verification), new password, and confirm new password. On submit, verify the current password against the active credentials stored in AuthContext, then if valid and new passwords match, update the password in AuthContext state and sessionStorage so it persists for the session. Display a clear success message on save or a descriptive error message on failure (wrong current password, password mismatch, or empty fields). The form must be styled consistently with the existing dark gradient admin theme.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-recent"
         ],
         "quotes": [
-          "make AnuragSingh as an username and Anurag@123 as a password"
+          "add change password"
         ]
       },
       "acceptanceCriteria": [
-        "Logging in at /admin/login with username 'AnuragSingh' and password 'Anurag@123' succeeds and redirects to /admin dashboard.",
-        "Logging in with any other username/password combination fails with an error message.",
-        "The AuthContext default credentials are set to username='AnuragSingh' and password='Anurag@123'."
-      ]
-    },
-    {
-      "id": "REQ-11",
-      "text": "Add a Settings section to the admin dashboard (`frontend/src/pages/admin/AdminDashboardPage.tsx`) that allows the logged-in admin to change their username and password. The settings form must have fields for: new username, current password (for verification), new password, and confirm new password. On successful save, the new credentials must replace the current ones in AuthContext state (and sessionStorage so they persist for the session). Display a success or error message after the attempt.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-latest"
-        ],
-        "quotes": [
-          "from where i can able to change?"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A 'Settings' tab or section is visible in the admin dashboard after login.",
-        "The settings form contains fields: new username, current password, new password, confirm new password.",
-        "Submitting with a wrong current password shows a clear error message and does not update credentials.",
-        "Submitting with mismatched new password and confirm password shows a validation error.",
-        "On successful save, the updated username and password are applied immediately — logging out and logging in again with the new credentials works.",
-        "A success notification is displayed after credentials are successfully changed."
+        "A 'Change Password' form is visible in the admin dashboard Settings section.",
+        "The form has three fields: Current Password, New Password, and Confirm New Password.",
+        "Submitting with the wrong current password shows an error message.",
+        "Submitting with mismatched new password and confirm new password shows an error message.",
+        "Submitting with all empty fields shows a validation error.",
+        "On a valid submission, the password is updated in AuthContext state and sessionStorage.",
+        "A success message is displayed after a successful password change.",
+        "The admin can log out and log back in using the new password.",
+        "The form and messages are styled consistently with the existing dark gradient admin theme."
       ]
     }
   ],
   "constraints": [
     "Do not modify any file under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui.",
-    "Credentials are managed client-side in AuthContext and sessionStorage only — do not store passwords in the Motoko backend."
+    "Credential updates must be applied to AuthContext state and sessionStorage only — no backend persistence required for this feature.",
+    "The change password feature must be contained within the existing Settings section of AdminDashboardPage.tsx."
   ],
   "nonGoals": [
-    "Persistent server-side credential storage across canister upgrades.",
-    "Multi-user admin accounts.",
-    "Email-based password reset flow.",
-    "Any changes to the analytics dashboard data or chart logic."
+    "Adding a change username form (already covered by existing Settings section).",
+    "Storing admin credentials in the Motoko backend.",
+    "Adding a password reset/forgot password flow.",
+    "Sending any email or notification on password change."
   ],
   "imageRequirements": {
     "required": [],
